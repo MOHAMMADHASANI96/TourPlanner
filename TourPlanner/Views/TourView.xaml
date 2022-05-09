@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="TourPlanner.Views.TourView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TourPlanner.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="650">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="200"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="5*" MinWidth="400" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <!-- Tour List -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="7*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!-- Lable -->
+            <TextBlock Grid.Row="0" Text="Tour:" FontWeight="Bold" FontSize="18" FontFamily="Calibri" Margin="5,0,0,0" />
+
+            <!-- Tour List -->
+            <ListBox Grid.Row="1" 
+                                 x:Name="listTourItems" 
+                                 ItemsSource="{Binding TourItems}" 
+                                 SelectedItem="{Binding CurrentItem}" 
+                                 DisplayMemberPath="Name" 
+                                 Margin="10,10,10,10"/>
+
+            <Grid Grid.Row="2" VerticalAlignment="Center" Margin="5,5,5,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="14" />
+                    <ColumnDefinition Width="36"/>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="Add" FontFamily="Bahnschrift" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding AddNewTour}"/>
+                <Button Grid.Column="2" Content="Edit" FontFamily="Bahnschrift" FontWeight="Bold"/>
+                <Button Grid.Column="3" Content="Delete" FontFamily="Bahnschrift" FontWeight="Bold"/>
+            </Grid>
+        </Grid>
+
+        <!-- Splitter -->
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+
+            </Grid>
+            <!-- Tour Details-->
+            <Grid Grid.Row="1">
+                <Grid Margin="0,25,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="83*"/>
+                        <ColumnDefinition Width="567*"/>
+                    </Grid.ColumnDefinitions>
+                    <TabControl Margin="10,-34,10,10" Grid.ColumnSpan="2">
+                        <TabItem Header="Route" Margin="-2,-2,-2,1">
+                            <Image Stretch="Fill" Source="{Binding CurrentTourImagePath, TargetNullValue={x:Null}}"/>
+                        </TabItem>
+                        <TabItem Header="Description" Margin="-2,-2,-2,1">
+                            <TextBlock Text="{Binding CurrentItem.Description}" Margin="0,10,0,0"/>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </Grid>
+
+            <!-- Tour Log-->
+            <Grid Grid.Row="2">
+                <Grid Margin="10,10,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="11"
+                                  ItemsSource="{Binding TourLogs}" AutoGenerateColumns="False"
+                                  SelectedItem="{Binding CurrentLog}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding DateTime}" Header="date/time" />
+                                <DataGridTextColumn Binding="{Binding Report}" Header="report" />
+                                <DataGridTextColumn Binding="{Binding Distance}" Header="distance" />
+                                <DataGridTextColumn Binding="{Binding TotalTime}" Header="total time" />
+                                <DataGridTextColumn Binding="{Binding Rating}" Header="rating" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,5,5,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" MinWidth="80"/>
+                                <ColumnDefinition Width="Auto" MinWidth="80"/>
+                                <ColumnDefinition Width="Auto" MinWidth="80"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Content="Add" FontFamily="Bahnschrift" FontWeight="Bold"/>
+                            <Button Grid.Column="1" Content="Edit" FontFamily="Bahnschrift" FontWeight="Bold"/>
+                            <Button Grid.Column="2" Content="Delete" FontFamily="Bahnschrift" FontWeight="Bold"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

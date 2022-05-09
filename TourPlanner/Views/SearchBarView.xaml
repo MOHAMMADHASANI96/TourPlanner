@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="TourPlanner.Views.SearchBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TourPlanner.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="650">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Column="0" Text="{Binding SearchName, Mode=TwoWay}" Margin="5,5,5,5" VerticalAlignment="Center"/>
+        <Button  Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,5,5,5" Width="50" Command="{Binding SearchCommand}">Search</Button>
+        <Button  Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,5,5,5" Width="50" Command="{Binding ClearCommand}">Clear</Button>
+    </Grid>
+</UserControl>
