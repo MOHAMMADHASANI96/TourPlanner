@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using TourPlanner.BusinessLayer;
 using TourPlanner.Models;
 using TourPlanner.ViewModels.Abstract;
 

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using TourPlanner.BusinessLayer;
 using TourPlanner.Models;
 using TourPlanner.ViewModels.Abstract;
 using TourPlanner.Views;
 
 namespace TourPlanner.ViewModels
 {
-    class TourViewModel:BaseViewModel
+    public class TourViewModel:BaseViewModel
     {
         private ITourFactory tourItemFactory;
         private IEnumerable<TourLog> tourLogs;

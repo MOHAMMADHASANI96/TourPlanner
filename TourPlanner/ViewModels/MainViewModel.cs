@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using TourPlanner.BusinessLayer;
 using TourPlanner.Models;
 using TourPlanner.ViewModels.Abstract;
 
 namespace TourPlanner.ViewModels
 {
-    public class MainViewModel: BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
         private ITourFactory tourItemFactory;
         private readonly TourViewModel tourListVM;

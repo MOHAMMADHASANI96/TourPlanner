@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TourPlanner.DataAccessLayer.PostgresSqlServer\TourPlanner.DataAccessLayer.PostgresSqlServer.csproj" />
+    <ProjectReference Include="..\TourPlanner.DateAccessLayer\TourPlanner.DateAccessLayer.csproj" />
+    <ProjectReference Include="..\TourPlanner.Models\TourPlanner.Models.csproj" />
+  </ItemGroup>
+
+</Project>
