@@ -9,6 +9,7 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 using TourPlanner.Models;
+using System.Web;
 
 namespace TourPlanner.BusinessLayer
 {
@@ -81,7 +82,7 @@ namespace TourPlanner.BusinessLayer
         {
             //create a new file with tour name
             string path = FilePathCreate(tourName);
-
+  
             //save the route image in file
             using (WebClient webClient = new WebClient())
             {
@@ -91,11 +92,11 @@ namespace TourPlanner.BusinessLayer
                 {
                     using (var yourImage = Image.FromStream(mem))
                     {
-                        //save as Png
-                        yourImage.Save(path, ImageFormat.Png);
+                       //save as Png
+                       yourImage.Save(path, ImageFormat.Png);
                     }
-                }
 
+                }
             }
 
         }
@@ -111,5 +112,6 @@ namespace TourPlanner.BusinessLayer
             string path = FilePathCreate(touritem.Name);
             File.Delete(path);
         }
+
     }
 }

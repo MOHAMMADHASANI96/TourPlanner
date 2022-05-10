@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
 using TourPlanner.Models;
+using TourPlanner.ViewModels;
 using TourPlanner.ViewModels.Abstract;
 
 namespace TourPlanner.ViewModels
@@ -22,8 +23,11 @@ namespace TourPlanner.ViewModels
         private ITourFactory tourFactory;
 
         private ICommand addNewTourCommand;
+        private ICommand cancle;
+     
 
         public ICommand AddTour => addNewTourCommand ??= new RelayCommand(AddNewTour);
+        public ICommand Cancle => cancle ??= new RelayCommand(PerformCancle);
 
         public AddNewTourViewModel()
         {
@@ -56,6 +60,12 @@ namespace TourPlanner.ViewModels
                 CheckInputTourDescription();
             }
 
+        }
+
+        private void PerformCancle(object commandParameter)
+        {
+            var window = (Window)commandParameter;
+            window.Close();
         }
 
 
@@ -188,5 +198,9 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
+
+    
+
+   
     }
 }
