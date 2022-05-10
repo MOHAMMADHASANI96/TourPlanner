@@ -14,5 +14,8 @@ namespace TourPlanner.BusinessLayer
         string GetImageUrl(string tourName);
         int GetLastTourId();
         public void SaveRouteImageFromApi(string from, string to, string tourName);
+        TourItem EditTourItem(TourItem tourItem);
+        void DeleteTourItem(TourItem tourItem);
+        void DeleteImageTour(TourItem tourItem);
     }
 }

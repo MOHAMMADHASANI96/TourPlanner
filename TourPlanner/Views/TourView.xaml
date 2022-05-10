@@ -42,8 +42,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0" Content="Add" FontFamily="Bahnschrift" FontWeight="Bold" Grid.ColumnSpan="2" Command="{Binding AddNewTour}"/>
-                <Button Grid.Column="2" Content="Edit" FontFamily="Bahnschrift" FontWeight="Bold"/>
-                <Button Grid.Column="3" Content="Delete" FontFamily="Bahnschrift" FontWeight="Bold"/>
+                <Button Grid.Column="2" Content="Edit" FontFamily="Bahnschrift" FontWeight="Bold" Command="{Binding EditTour}"/>
+                <Button Grid.Column="3" Content="Delete" FontFamily="Bahnschrift" FontWeight="Bold" Command="{Binding DeleteTour}"/>
             </Grid>
         </Grid>
 

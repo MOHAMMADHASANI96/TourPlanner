@@ -74,5 +74,21 @@ namespace TourPlanner.BusinessLayer
             return path;
         }
 
+        public TourItem EditTourItem(TourItem tourItem)
+        {
+            ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
+            return tourItemDAO.EditTourItem(tourItem);
+        }
+
+        public void DeleteTourItem(TourItem tourItem)
+        {
+            ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
+            tourItemDAO.DeleteTourItem(tourItem);
+        }
+
+        public void DeleteImageTour(TourItem tourItem)
+        {
+            mapQuestApiProcessor.DeleteImage(tourItem);
+        }
     }
 }

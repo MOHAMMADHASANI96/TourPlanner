@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
 using TourPlanner.Models;
+using TourPlanner.ViewModels;
 using TourPlanner.ViewModels.Abstract;
 using TourPlanner.Views;
 
@@ -17,6 +19,8 @@ namespace TourPlanner.ViewModels
         private TourItem currentItem;
         private TourLog currentLog;
 
+        public EditTourViewModel editTourViewModel;
+
         //Tour items variable 
         private string currentTourImagePath;
 
@@ -29,7 +33,11 @@ namespace TourPlanner.ViewModels
 
         //command
         private ICommand addNewTour;
+        private ICommand editTour;
+        private ICommand deleteTour;
+        public ICommand DeleteTour => deleteTour ??= new RelayCommand(PerformDeleteTour);
         public ICommand AddNewTour => addNewTour ??= new RelayCommand(PerformAddNewTour);
+        public ICommand EditTour => editTour ??= new RelayCommand(PerformEditTour);
 
         public ObservableCollection<TourItem> TourItems { get; set; }
         public ObservableCollection<TourLog> TourLogs { get; set; }
@@ -200,6 +208,45 @@ namespace TourPlanner.ViewModels
             IEnumerable<TourItem> result = this.tourItemFactory.GetItems();
             FillListBox(result);
 
+        }
+
+        private void PerformEditTour(object commandParameter)
+        {
+            if(CurrentItem != null)
+            {
+                this.editTourViewModel = new EditTourViewModel();
+                editTourViewModel.CurrentTour = CurrentItem;
+                EditTourView editTour = new EditTourView();
+                editTour.DataContext = this.editTourViewModel;
+                editTour.ShowDialog();
+                this.tourItemFactory = TourFactory.GetInstance();
+                IEnumerable<TourItem> result = this.tourItemFactory.GetItems();
+                FillListBox(result);
+            }
+            
+
+        }
+
+
+
+        private void PerformDeleteTour(object commandParameter)
+        {
+            if (CurrentItem != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Would you like to Delete this Tour?", "Delete Tour", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        this.tourItemFactory.DeleteTourItem(CurrentItem);
+                        MessageBox.Show("Tour Deleted", "Delete Tour");
+                        this.tourItemFactory = TourFactory.GetInstance();
+                        IEnumerable<TourItem> results = this.tourItemFactory.GetItems();
+                        FillListBox(results);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }
         }
     }
 }
