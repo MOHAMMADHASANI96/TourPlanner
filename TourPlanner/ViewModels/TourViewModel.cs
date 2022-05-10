@@ -35,6 +35,9 @@ namespace TourPlanner.ViewModels
         private ICommand addNewTour;
         private ICommand editTour;
         private ICommand deleteTour;
+        private ICommand addNewLog;
+
+        public ICommand AddNewLog => addNewLog ??= new RelayCommand(PerformAddNewLog);
         public ICommand DeleteTour => deleteTour ??= new RelayCommand(PerformDeleteTour);
         public ICommand AddNewTour => addNewTour ??= new RelayCommand(PerformAddNewTour);
         public ICommand EditTour => editTour ??= new RelayCommand(PerformEditTour);
@@ -247,6 +250,17 @@ namespace TourPlanner.ViewModels
                         break;
                 }
             }
+        }
+
+ 
+
+        private void PerformAddNewLog(object commandParameter)
+        {
+            AddNewLogView addLog = new AddNewLogView();
+            addLog.DataContext = new AddNewLogViewModel();
+            addLog.ShowDialog();
+            this.tourItemFactory = TourFactory.GetInstance();
+            FillLogBox(this.tourItemFactory.GetTourLog(currentItem));
         }
     }
 }

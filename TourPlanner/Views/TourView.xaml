@@ -107,8 +107,8 @@
                                 <ColumnDefinition Width="Auto" MinWidth="80"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Content="Add" FontFamily="Bahnschrift" FontWeight="Bold"/>
-                            <Button Grid.Column="1" Content="Edit" FontFamily="Bahnschrift" FontWeight="Bold"/>
+                            <Button Grid.Column="0" Content="Add" FontFamily="Bahnschrift" FontWeight="Bold" Command="{Binding AddNewLog}"/>
+                            <Button Grid.Column="1" Content="Edit" FontFamily="Bahnschrift" FontWeight="Bold" />
                             <Button Grid.Column="2" Content="Delete" FontFamily="Bahnschrift" FontWeight="Bold"/>
                         </Grid>
                     </Grid>

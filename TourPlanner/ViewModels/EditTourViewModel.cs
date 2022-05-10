@@ -14,10 +14,6 @@ namespace TourPlanner.ViewModels
 {
     public class EditTourViewModel: BaseViewModel
     {
-        private string tourName;
-        private string tourDescription;
-        private string tourFrom;
-        private string tourTo;
         private TourItem currentTour;
 
         private ITourFactory tourFactory;
@@ -46,10 +42,10 @@ namespace TourPlanner.ViewModels
         private void PerformEditTour(object commandParameter)
         {
 
-            if (!string.IsNullOrEmpty(CurrentTour.Name) && !string.IsNullOrEmpty(CurrentTour.From) && !string.IsNullOrEmpty(CurrentTour.To) && !string.IsNullOrEmpty(CurrentTour.Description))
+            if (!string.IsNullOrEmpty(CurrentTour.Name) && !string.IsNullOrEmpty(CurrentTour.From) && !string.IsNullOrEmpty(CurrentTour.To) && !string.IsNullOrEmpty(CurrentTour.Description) && !string.IsNullOrEmpty(CurrentTour.TransportTyp))
             {
                 int id = CurrentTour.TourId;
-                TourItem editTour = new TourItem(id, CurrentTour.Name, CurrentTour.Description, CurrentTour.From, CurrentTour.To, CurrentTour.Name, 0);
+                TourItem editTour = new TourItem(id, CurrentTour.Name, CurrentTour.Description, CurrentTour.From, CurrentTour.To, CurrentTour.Name, 0 , CurrentTour.TransportTyp);
 
                 //save to DB
                 this.tourFactory.EditTourItem(editTour);

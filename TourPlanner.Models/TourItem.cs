@@ -15,8 +15,9 @@ namespace TourPlanner.Models
         public string To { get; set; }
         public string ImagePath { get; set; }
         public double Distance { get; set; }
+        public string TransportTyp { get; set; }
 
-        public TourItem(int tourId, string name, string description, string from, string to, string imagePath, double distance)
+        public TourItem(int tourId, string name, string description, string from, string to, string imagePath, double distance, string transportTyp)
         {
             this.TourId = tourId;
             this.Name = name;
@@ -25,6 +26,7 @@ namespace TourPlanner.Models
             this.To = to;
             this.ImagePath = imagePath;
             this.Distance = distance;
+            this.TransportTyp = transportTyp;
         }
     }
 }

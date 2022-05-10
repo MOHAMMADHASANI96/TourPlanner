@@ -36,9 +36,9 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT_NEW_LOG);
             database.DefineParameter(insertCommand, "@DateTime", DbType.Date, tourLog.DateTime);
             database.DefineParameter(insertCommand, "@Report", DbType.String, tourLog.Report);
-            database.DefineParameter(insertCommand, "@Distance", DbType.Double, tourLog.Distance);
-            database.DefineParameter(insertCommand, "@TotalTime", DbType.Time, tourLog.DateTime);
-            database.DefineParameter(insertCommand, "@Rating", DbType.Double, tourLog.Rating);
+            database.DefineParameter(insertCommand, "@Distance", DbType.String, tourLog.Difficulty);
+            database.DefineParameter(insertCommand, "@TotalTime", DbType.Time, tourLog.TotalTime);
+            database.DefineParameter(insertCommand, "@Rating", DbType.String, tourLog.Rating);
             database.DefineParameter(insertCommand, "@TourID", DbType.Int32, tourItem.TourId);
 
             return FindTourLogById(database.ExecuteScalar(insertCommand));
@@ -71,9 +71,9 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
                        (int)reader["tour_log_id"],
                        (DateTime)reader["date_time"],
                        (string)reader["report"],
-                       (double)reader["distance"],
+                       (string)reader["difficulty"],
                        (TimeSpan)reader["total_time"],
-                       (double)reader["rating"],
+                       (string)reader["rating"],
                        tourItem.FindTourItemById((int)reader["tour_item_fk"])
                    ));
                 }

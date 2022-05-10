@@ -16,6 +16,7 @@ namespace TourPlanner.ViewModels
         private string tourDescription;
         private string tourFrom;
         private string tourTo;
+        private string tourTransportTyp;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
         private readonly Dictionary<string, List<string>> _errorsByPropertyName = new Dictionary<string, List<string>>();
@@ -36,10 +37,10 @@ namespace TourPlanner.ViewModels
 
         private void AddNewTour(object commandParameter)
         {
-            if (!string.IsNullOrEmpty(TourName) && !string.IsNullOrEmpty(TourFrom) && !string.IsNullOrEmpty(TourTo) && !string.IsNullOrEmpty(TourDescription))
+            if (!string.IsNullOrEmpty(TourName) && !string.IsNullOrEmpty(TourFrom) && !string.IsNullOrEmpty(TourTo) && !string.IsNullOrEmpty(TourDescription) && !string.IsNullOrEmpty(TourTransportTyp))
             {
                 int id = this.tourFactory.GetLastTourId();
-                TourItem newTour = new TourItem(id, tourName, tourDescription, tourFrom, tourTo, tourName, 0);
+                TourItem newTour = new TourItem(id, tourName, tourDescription, tourFrom, tourTo, tourName, 0, tourTransportTyp);
 
                 //save to DB
                 this.tourFactory.CreateTourItem(newTour);
@@ -199,8 +200,21 @@ namespace TourPlanner.ViewModels
             }
         }
 
-    
+        public string TourTransportTyp
+        {
+            get { return tourTransportTyp; }
+            set
+            {
+                if ((tourTransportTyp != value) && (value != null))
+                {
+                    tourTransportTyp = value;
+                    RaisePropertyChangedEvent(nameof(TourTransportTyp));
+                }
+            }
+        }
 
-   
+
+
+
     }
 }
