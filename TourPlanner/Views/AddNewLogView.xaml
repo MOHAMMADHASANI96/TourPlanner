@@ -15,38 +15,35 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Date:</Label>
         <DatePicker Grid.Row="0" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="5" Text="{Binding LogDate}" ></DatePicker>
-        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Distance:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="5" Text="{Binding LogDistance}"></TextBox>
-        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Total time:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="5" Text="{Binding LogTotalTime}"></TextBox>
-        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Report:</Label>
-        <TextBox Grid.Row="3" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="5" Text="{Binding LogDifficulty}"></TextBox>
-        <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Difficulty:</Label>
-        <ComboBox  Width="200" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding LogDifficulty}">
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Total time:</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="5" Text="{Binding LogTotalTime}"></TextBox>
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Report:</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="5" Text="{Binding LogReport}"></TextBox>
+        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Difficulty:</Label>
+        <ComboBox  Width="200" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding LogDifficulty}">
             <ComboBoxItem>Very hard</ComboBoxItem>
             <ComboBoxItem>Hard</ComboBoxItem>
             <ComboBoxItem>Moderate</ComboBoxItem>
             <ComboBoxItem>Easy</ComboBoxItem>
             <ComboBoxItem>Very Easy</ComboBoxItem>
         </ComboBox>
-        <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Rating:</Label>
-        <ComboBox  Width="200" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding LogRating}">
+        <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Rating:</Label>
+        <ComboBox  Width="200" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding LogRating}">
             <ComboBoxItem>*</ComboBoxItem>
             <ComboBoxItem>**</ComboBoxItem>
             <ComboBoxItem>***</ComboBoxItem>
             <ComboBoxItem>****</ComboBoxItem>
             <ComboBoxItem>*****</ComboBoxItem>
         </ComboBox>
-        <Button Grid.Row="6" Grid.Column="1" Margin="10,25" Padding="5" Command="{Binding AddLog}">SAVE</Button>
+        <Button Grid.Row="5" Grid.Column="1" Margin="10,25" Padding="5" Command="{Binding AddLog}">SAVE</Button>
     </Grid>
    
 </Window>
