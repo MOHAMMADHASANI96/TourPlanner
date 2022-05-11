@@ -92,7 +92,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding DateTime}" Header="date/time" />
                                 <DataGridTextColumn Binding="{Binding Report}" Header="report" />
-                                <DataGridTextColumn Binding="{Binding Distance}" Header="distance" />
+                                <DataGridTextColumn Binding="{Binding Difficulty}" Header="distance" />
                                 <DataGridTextColumn Binding="{Binding TotalTime}" Header="total time" />
                                 <DataGridTextColumn Binding="{Binding Rating}" Header="rating" />
                             </DataGrid.Columns>
