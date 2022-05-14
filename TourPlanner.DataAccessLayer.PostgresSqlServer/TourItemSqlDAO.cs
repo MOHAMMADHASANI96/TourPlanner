@@ -94,9 +94,9 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
         // delete TourItem
         public void DeleteTourItem(TourItem tourItem)
         {
-            DbCommand editCommand = database.CreateCommand(SQL_DELETE_BY_ID);
-            database.DefineParameter(editCommand, "@Id", DbType.Int32, tourItem.TourId);
-            database.ExecuteScalar(editCommand);
+            DbCommand deleteCommand = database.CreateCommand(SQL_DELETE_BY_ID);
+            database.DefineParameter(deleteCommand, "@Id", DbType.Int32, tourItem.TourId);
+            database.ExecuteScalar(deleteCommand);
         }
 
         //quering tours from postgres database

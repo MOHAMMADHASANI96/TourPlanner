@@ -10,7 +10,7 @@ using TourPlanner.Views;
 
 namespace TourPlanner.ViewModels
 {
-    public class TourViewModel:BaseViewModel
+    public class TourViewModel : BaseViewModel
     {
         private ITourFactory tourItemFactory;
         private IEnumerable<TourLog> tourLogs;
@@ -20,6 +20,7 @@ namespace TourPlanner.ViewModels
         private TourLog currentLog;
 
         public EditTourViewModel editTourViewModel;
+        public EditLogViewModel editLogViewModel;
         public AddNewLogViewModel addNewLogViewModel;
 
         //Tour items variable 
@@ -38,6 +39,8 @@ namespace TourPlanner.ViewModels
         private ICommand deleteTour;
         private ICommand addNewLog;
         private ICommand editLog;
+        private ICommand deleteLog;
+
 
 
         public ICommand AddNewTour => addNewTour ??= new RelayCommand(PerformAddNewTour);
@@ -45,6 +48,7 @@ namespace TourPlanner.ViewModels
         public ICommand DeleteTour => deleteTour ??= new RelayCommand(PerformDeleteTour);
         public ICommand AddNewLog => addNewLog ??= new RelayCommand(PerformAddNewLog);
         public ICommand EditLog => editLog ??= new RelayCommand(PerformEditLog);
+        public ICommand DeleteLog => deleteLog ??= new RelayCommand(PerformDeleteLog);
 
 
 
@@ -97,6 +101,22 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
+        public TourLog CurrentLog
+        {
+            get
+            {
+                return currentLog;
+            }
+            set
+            {
+                if ((currentLog != value) && (value != null))
+                {
+                    currentLog = value;
+                    RaisePropertyChangedEvent(nameof(CurrentLog));
+                }
+            }
+        }
+
 
         public IEnumerable<TourLog> Logs
         {
@@ -127,21 +147,6 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public TourLog CurrentLog
-        {
-            get
-            {
-                return currentLog;
-            }
-            set
-            {
-                if ((currentLog != value) && (value != null))
-                {
-                    currentLog = value;
-                    RaisePropertyChangedEvent(nameof(currentLog));
-                }
-            }
-        }
 
         public string DateTime
         {
@@ -224,7 +229,7 @@ namespace TourPlanner.ViewModels
         // edit Tour
         private void PerformEditTour(object commandParameter)
         {
-            if(CurrentItem != null)
+            if (CurrentItem != null)
             {
                 currentTourImagePath = null;
                 RaisePropertyChangedEvent(nameof(CurrentTourImagePath));
@@ -280,13 +285,35 @@ namespace TourPlanner.ViewModels
         {
             if (CurrentLog != null)
             {
-            this.addNewLogViewModel = new AddNewLogViewModel();
-            addNewLogViewModel.CurrentTour = CurrentItem;
-            AddNewLogView addLog = new AddNewLogView();
-            addLog.DataContext = this.addNewLogViewModel;
-            addLog.ShowDialog();
-            this.tourItemFactory = TourFactory.GetInstance();
-            FillLogBox(this.tourItemFactory.GetTourLog(currentItem));
+                this.editLogViewModel = new EditLogViewModel();
+                editLogViewModel.CurrentLog = CurrentLog;
+                EditLogView editLog = new EditLogView();
+                editLog.DataContext = this.editLogViewModel;
+                editLog.ShowDialog();
+                this.tourItemFactory = TourFactory.GetInstance();
+                FillLogBox(this.tourItemFactory.GetTourLog(currentItem));
+            }
+        }
+
+
+
+        // delete Tour Log
+        private void PerformDeleteLog(object commandParameter)
+        {
+            if (CurrentLog != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Would you like to Delete this Log?", "Delete Log", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        this.tourItemFactory.DeleteTourLog(CurrentLog);
+                        MessageBox.Show("Log Deleted", "Delete Log");
+                        this.tourItemFactory = TourFactory.GetInstance();
+                        FillLogBox(this.tourItemFactory.GetTourLog(currentItem));
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
         }
     }

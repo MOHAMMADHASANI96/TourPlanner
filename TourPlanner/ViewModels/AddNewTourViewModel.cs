@@ -65,7 +65,7 @@ namespace TourPlanner.ViewModels
 
         private void PerformCancle(object commandParameter)
         {
-            var window = (Window)commandParameter;
+            var window = Application.Current.Windows[1];
             window.Close();
         }
 

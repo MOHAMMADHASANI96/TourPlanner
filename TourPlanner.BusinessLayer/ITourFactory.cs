@@ -29,6 +29,7 @@ namespace TourPlanner.BusinessLayer
         //delete
         void DeleteTourItem(TourItem tourItem);
         void DeleteImageTour(TourItem tourItem);
+        void DeleteTourLog(TourLog tourLog);
 
 
 

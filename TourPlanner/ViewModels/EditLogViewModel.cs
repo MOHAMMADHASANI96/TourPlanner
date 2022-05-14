@@ -12,6 +12,7 @@ namespace TourPlanner.ViewModels
         private TourLog currentLog;
         private TourItem currentTour;
         private ITourFactory tourFactory;
+        private Window window;
 
         //command
         private RelayCommand editLog;
@@ -45,20 +46,25 @@ namespace TourPlanner.ViewModels
         public EditLogViewModel()
         {
             this.tourFactory = TourFactory.GetInstance();
+
         }
 
 
         private void PerformEditLog(object commandParameter)
         {
-            if (CurrentLog.DateTime !=System.DateTime.MinValue && !string.IsNullOrEmpty(CurrentLog.Difficulty) && !string.IsNullOrEmpty(CurrentLog.Rating) && !string.IsNullOrEmpty(CurrentLog.Report))
+            if (!string.IsNullOrEmpty(CurrentLog.Difficulty) && !string.IsNullOrEmpty(CurrentLog.Rating) && !string.IsNullOrEmpty(CurrentLog.Report))
             {
                 TourLog editLog = new TourLog(CurrentLog.LogId,CurrentLog.DateTime,CurrentLog.Report,CurrentLog.Difficulty,CurrentLog.TotalTime,CurrentLog.Rating,currentTour);
 
                 //save to DB
                 this.tourFactory.EditTourLog(editLog);
 
+                //Show Successfully Message 
                 MessageBox.Show("Edit Log Successfully added.");
 
+                //Close Window
+                window = Application.Current.Windows[2];
+                window.Close();
             }
         }
     }

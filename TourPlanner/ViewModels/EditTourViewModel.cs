@@ -42,10 +42,15 @@ namespace TourPlanner.ViewModels
 
                 //save to DB
                 this.tourFactory.EditTourItem(editTour);
-                //save image to Folder
+                //Save image to Folder
                 this.tourFactory.SaveRouteImageFromApi(CurrentTour.From, CurrentTour.To, CurrentTour.Name);
 
+                //Show Successfully Message 
                 MessageBox.Show("Edit Tour Successfully added.");
+
+                //Close Window
+                var window = Application.Current.Windows[2];
+                window.Close();
 
             }
         }

@@ -95,6 +95,10 @@ namespace TourPlanner.BusinessLayer
             mapQuestApiProcessor.DeleteImage(tourItem);
         }
 
-
+        public void DeleteTourLog(TourLog tourLog)
+        {
+            ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
+            tourLogDAO.DeleteTourLog(tourLog);
+        }
     }
 }

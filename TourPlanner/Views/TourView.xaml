@@ -93,7 +93,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding DateTime}" Header="date/time" />
                                 <DataGridTextColumn Binding="{Binding Report}" Header="report" />
-                                <DataGridTextColumn Binding="{Binding Difficulty}" Header="distance" />
+                                <DataGridTextColumn Binding="{Binding Difficulty}" Header="difficulty" />
                                 <DataGridTextColumn Binding="{Binding TotalTime}" Header="total time" />
                                 <DataGridTextColumn Binding="{Binding Rating}" Header="rating" />
                             </DataGrid.Columns>
@@ -110,7 +110,7 @@
                             </Grid.ColumnDefinitions>
                             <Button Grid.Column="0" Content="Add" FontFamily="Bahnschrift" FontWeight="Bold" Command="{Binding AddNewLog}"/>
                             <Button Grid.Column="1" Content="Edit" FontFamily="Bahnschrift" FontWeight="Bold" Command="{Binding EditLog}" />
-                            <Button Grid.Column="2" Content="Delete" FontFamily="Bahnschrift" FontWeight="Bold"/>
+                            <Button Grid.Column="2" Content="Delete" FontFamily="Bahnschrift" FontWeight="Bold" Command="{Binding DeleteLog}"/>
                         </Grid>
                     </Grid>
                 </Grid>
