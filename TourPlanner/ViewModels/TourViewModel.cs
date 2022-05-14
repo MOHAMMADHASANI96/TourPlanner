@@ -20,6 +20,7 @@ namespace TourPlanner.ViewModels
         private TourLog currentLog;
 
         public EditTourViewModel editTourViewModel;
+        public AddNewLogViewModel addNewLogViewModel;
 
         //Tour items variable 
         private string currentTourImagePath;
@@ -256,8 +257,10 @@ namespace TourPlanner.ViewModels
 
         private void PerformAddNewLog(object commandParameter)
         {
+            this.addNewLogViewModel = new AddNewLogViewModel();
+            addNewLogViewModel.CurrentTour = CurrentItem;
             AddNewLogView addLog = new AddNewLogView();
-            addLog.DataContext = new AddNewLogViewModel();
+            addLog.DataContext = this.addNewLogViewModel;
             addLog.ShowDialog();
             this.tourItemFactory = TourFactory.GetInstance();
             FillLogBox(this.tourItemFactory.GetTourLog(currentItem));

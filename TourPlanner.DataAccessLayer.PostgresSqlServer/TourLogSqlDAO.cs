@@ -14,7 +14,7 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
 
         private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"tour_log\" WHERE \"tour_log_id\"=@Id";
         private const string SQL_FIND_BY_TOUR = "SELECT * FROM public.\"tour_log\" WHERE \"tour_item_fk\"=@TourItemId";
-        private const string SQL_INSERT_NEW_LOG = "INSERT INTO public.\"tour_log\" (\"date_time\", \"report\", \"distance\", \"total_time\", \"rating\", \"tour_item_fk\") VALUES (@DateTime, @Report, @Distance, @TotalTime, @Rating, @TourID);";
+        private const string SQL_INSERT_NEW_LOG = "INSERT INTO public.\"tour_log\" (\"date_time\", \"report\", \"difficulty\", \"total_time\", \"rating\", \"tour_item_fk\") VALUES (@DateTime, @Report, @Difficulty, @TotalTime, @Rating, @TourID);";
 
         private IDatabase database;
         private ITourItemDAO tourItem;
@@ -31,15 +31,15 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
             this.tourItem = tourItemo;
         }
 
-        public TourLog AddNewTourLog(TourLog tourLog, TourItem tourItem)
+        public TourLog AddNewTourLog(TourLog tourLog)
         {
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT_NEW_LOG);
             database.DefineParameter(insertCommand, "@DateTime", DbType.Date, tourLog.DateTime);
             database.DefineParameter(insertCommand, "@Report", DbType.String, tourLog.Report);
-            database.DefineParameter(insertCommand, "@Distance", DbType.String, tourLog.Difficulty);
+            database.DefineParameter(insertCommand, "@Difficulty", DbType.String, tourLog.Difficulty);
             database.DefineParameter(insertCommand, "@TotalTime", DbType.Time, tourLog.TotalTime);
             database.DefineParameter(insertCommand, "@Rating", DbType.String, tourLog.Rating);
-            database.DefineParameter(insertCommand, "@TourID", DbType.Int32, tourItem.TourId);
+            database.DefineParameter(insertCommand, "@TourID", DbType.Int32, tourLog.LogTourItem.TourId);
 
             return FindTourLogById(database.ExecuteScalar(insertCommand));
         }

@@ -42,10 +42,10 @@ namespace TourPlanner.BusinessLayer
             return tourItemDAO.AddNewTourItem(tourItem);
         }
 
-        public TourLog CreateTourLog(TourLog tourLog, TourItem tourItem)
+        public TourLog CreateTourLog(TourLog tourLog)
         {
             ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
-            return tourLogDAO.AddNewTourLog(tourLog, tourItem);
+            return tourLogDAO.AddNewTourLog(tourLog);
         }
         public IEnumerable<TourLog> GetTourLog(TourItem tourItem)
         {

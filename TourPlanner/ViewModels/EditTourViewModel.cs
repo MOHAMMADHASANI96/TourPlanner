@@ -15,9 +15,9 @@ namespace TourPlanner.ViewModels
     public class EditTourViewModel: BaseViewModel
     {
         private TourItem currentTour;
-
         private ITourFactory tourFactory;
 
+        //command
         private ICommand editTour;
         public ICommand EditTour => editTour ??= new RelayCommand(PerformEditTour);
 

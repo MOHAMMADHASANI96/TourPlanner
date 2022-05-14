@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
+using TourPlanner.Models;
 using TourPlanner.ViewModels.Abstract;
 
 namespace TourPlanner.ViewModels
@@ -13,6 +15,7 @@ namespace TourPlanner.ViewModels
         private string logReport;
         private string logRating;
 
+        private TourItem currentTour;
         private ITourFactory tourFactory;
 
         //command
@@ -23,6 +26,19 @@ namespace TourPlanner.ViewModels
         public AddNewLogViewModel()
         {
             this.tourFactory = TourFactory.GetInstance();
+        }
+
+        public TourItem CurrentTour
+        {
+            get { return currentTour; }
+            set
+            {
+                if ((currentTour != value) && (value != null))
+                {
+                    currentTour = value;
+                    RaisePropertyChangedEvent(nameof(CurrentTour));
+                }
+            }
         }
 
 
@@ -91,10 +107,22 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        
 
         private void PerformAddLog(object commandParameter)
         {
+            /*if (LogDate!= DateTime.MinValue && !string.IsNullOrEmpty(LogDifficulty) && !string.IsNullOrEmpty(LogReport) && !string.IsNullOrEmpty(LogRating))
+            {*/
+                TourLog newLog = new TourLog(0, logDate, logReport,logDifficulty,logTotalTime,logRating,currentTour);
+
+                //save to DB
+                this.tourFactory.CreateTourLog(newLog);
+
+                MessageBox.Show("New TourLog Successfully added.");
+                LogDate = DateTime.MinValue;
+                LogDifficulty = string.Empty;
+                LogReport = string.Empty;
+                LogRating = string.Empty;
+            /*}*/
         }
     }
 }
