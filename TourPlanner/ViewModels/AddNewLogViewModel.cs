@@ -110,8 +110,8 @@ namespace TourPlanner.ViewModels
 
         private void PerformAddLog(object commandParameter)
         {
-            /*if (LogDate!= DateTime.MinValue && !string.IsNullOrEmpty(LogDifficulty) && !string.IsNullOrEmpty(LogReport) && !string.IsNullOrEmpty(LogRating))
-            {*/
+            if (!string.IsNullOrEmpty(LogDifficulty) && !string.IsNullOrEmpty(LogReport) && !string.IsNullOrEmpty(LogRating))
+            {
                 TourLog newLog = new TourLog(0, logDate, logReport,logDifficulty,logTotalTime,logRating,currentTour);
 
                 //save to DB
@@ -122,7 +122,7 @@ namespace TourPlanner.ViewModels
                 LogDifficulty = string.Empty;
                 LogReport = string.Empty;
                 LogRating = string.Empty;
-            /*}*/
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
         private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"tour_log\" WHERE \"tour_log_id\"=@Id";
         private const string SQL_FIND_BY_TOUR = "SELECT * FROM public.\"tour_log\" WHERE \"tour_item_fk\"=@TourItemId";
         private const string SQL_INSERT_NEW_LOG = "INSERT INTO public.\"tour_log\" (\"date_time\", \"report\", \"difficulty\", \"total_time\", \"rating\", \"tour_item_fk\") VALUES (@DateTime, @Report, @Difficulty, @TotalTime, @Rating, @TourID);";
+        private const string SQL_PUT_Log_BY_ID = "Update public.\"tour_log\" SET \"date_time\"=@DateTime , \"report\" =@Report , \"difficulty\"=@Difficulty ,\"total_time\"=@TotalTime ,\"rating\" =@Rating WHERE \"tour_log_id\"=@LogId";
 
         private IDatabase database;
         private ITourItemDAO tourItem;
@@ -31,6 +32,7 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
             this.tourItem = tourItemo;
         }
 
+        // add new Log
         public TourLog AddNewTourLog(TourLog tourLog)
         {
             DbCommand insertCommand = database.CreateCommand(SQL_INSERT_NEW_LOG);
@@ -44,6 +46,7 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
             return FindTourLogById(database.ExecuteScalar(insertCommand));
         }
 
+        // find Log by id
         public TourLog FindTourLogById(int itemLogId)
         {
             DbCommand command = database.CreateCommand(SQL_FIND_BY_ID);
@@ -52,6 +55,7 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
             return logList.FirstOrDefault();
         }
 
+        // get Log
         public IEnumerable<TourLog> GetLogItems(TourItem tourItem)
         {
             DbCommand command = database.CreateCommand(SQL_FIND_BY_TOUR);
@@ -59,6 +63,19 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
             return QueryLogFromDb(command);
         }
 
+        // edit Log
+        public TourLog EditTourLog(TourLog tourLog)
+        {
+            DbCommand insertCommand = database.CreateCommand(SQL_PUT_Log_BY_ID);
+            database.DefineParameter(insertCommand, "@DateTime", DbType.Date, tourLog.DateTime);
+            database.DefineParameter(insertCommand, "@Report", DbType.String, tourLog.Report);
+            database.DefineParameter(insertCommand, "@Difficulty", DbType.String, tourLog.Difficulty);
+            database.DefineParameter(insertCommand, "@TotalTime", DbType.Time, tourLog.TotalTime);
+            database.DefineParameter(insertCommand, "@Rating", DbType.String, tourLog.Rating);
+            database.DefineParameter(insertCommand, "@LogId", DbType.Int32, tourLog.LogId);
+
+            return FindTourLogById(database.ExecuteScalar(insertCommand));
+        }
         private IEnumerable<TourLog> QueryLogFromDb(DbCommand command)
         {
             List<TourLog> logList = new List<TourLog>();

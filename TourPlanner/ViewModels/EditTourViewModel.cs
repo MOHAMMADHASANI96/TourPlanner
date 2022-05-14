@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
 using TourPlanner.Models;
-using TourPlanner.ViewModels;
 using TourPlanner.ViewModels.Abstract;
 
 namespace TourPlanner.ViewModels
@@ -40,8 +34,7 @@ namespace TourPlanner.ViewModels
         }
 
         private void PerformEditTour(object commandParameter)
-        {
-
+        {            
             if (!string.IsNullOrEmpty(CurrentTour.Name) && !string.IsNullOrEmpty(CurrentTour.From) && !string.IsNullOrEmpty(CurrentTour.To) && !string.IsNullOrEmpty(CurrentTour.Description) && !string.IsNullOrEmpty(CurrentTour.TransportTyp))
             {
                 int id = CurrentTour.TourId;

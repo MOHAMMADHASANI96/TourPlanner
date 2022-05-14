@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TourPlanner.DataAccessLayer.Common;
 using TourPlanner.DataAccessLayer.DAO;
 using TourPlanner.Models;
@@ -80,6 +78,12 @@ namespace TourPlanner.BusinessLayer
             return tourItemDAO.EditTourItem(tourItem);
         }
 
+        public TourLog EditTourLog(TourLog tourLog)
+        {
+           ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
+           return tourLogDAO.EditTourLog(tourLog);
+        }
+
         public void DeleteTourItem(TourItem tourItem)
         {
             ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
@@ -90,5 +94,7 @@ namespace TourPlanner.BusinessLayer
         {
             mapQuestApiProcessor.DeleteImage(tourItem);
         }
+
+
     }
 }

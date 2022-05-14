@@ -13,7 +13,7 @@ namespace TourPlanner.Models
         public string Rating { get; set; }
         public TourItem LogTourItem { get; set; }
 
-        public TourLog(int logId, DateTime dateTime, string report, string difficulty, TimeSpan totalTime, string rating, TourItem LogTourItem)
+        public TourLog(int logId, DateTime dateTime, string report, string difficulty, TimeSpan totalTime, string rating, TourItem logTourItem)
         {
             this.LogId = logId;
             this.DateTime = dateTime;
@@ -21,7 +21,7 @@ namespace TourPlanner.Models
             this.Difficulty = difficulty;
             this.TotalTime = totalTime;
             this.Rating = rating;
-            this.LogTourItem = LogTourItem;
+            this.LogTourItem = logTourItem;
         }
     }
 }
