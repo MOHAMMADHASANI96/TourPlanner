@@ -15,7 +15,7 @@
                     <RowDefinition Height="8*" />
                 </Grid.RowDefinitions>
                 <!-- Menu -->
-                <local:MenuView x:Name="Menu" />
+                <local:MenuView x:Name="Menu"/>
                 <!-- Search Bar -->
                 <local:SearchBarView x:Name="SearchBar" Grid.Row="1" />
                 <!-- Tour -->

@@ -15,7 +15,7 @@ namespace TourPlanner.ViewModels
         {
 
         }
-        public MainViewModel(TourViewModel tourListVM, SearchBarViewModel searchBarVM)
+        public MainViewModel(TourViewModel tourListVM, SearchBarViewModel searchBarVM , MenuViewModel menuViewModel)
         {
             this.tourItemFactory = TourFactory.GetInstance();
             this.result = this.tourItemFactory.GetItems();

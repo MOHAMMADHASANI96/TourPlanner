@@ -15,6 +15,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
+
             <!-- Tour List -->
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

@@ -12,12 +12,14 @@ namespace TourPlanner
         {
             var searchBarVM = new SearchBarViewModel();
             var tourVM = new TourViewModel();
+            var menuVM = new MenuViewModel();
 
             var wnd = new MainWindow
             {
-                DataContext = new MainViewModel(tourVM, searchBarVM),
+                DataContext = new MainViewModel(tourVM, searchBarVM, menuVM),
                 SearchBar = { DataContext = searchBarVM },
-                Tour = { DataContext = tourVM }
+                Tour = { DataContext = tourVM },
+                Menu = {DataContext = menuVM}
             };
 
             wnd.Show();

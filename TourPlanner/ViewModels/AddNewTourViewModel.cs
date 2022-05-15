@@ -42,8 +42,6 @@ namespace TourPlanner.ViewModels
         {
             if (!string.IsNullOrEmpty(TourName) && !string.IsNullOrEmpty(TourFrom) && !string.IsNullOrEmpty(TourTo) && !string.IsNullOrEmpty(TourDescription) && !string.IsNullOrEmpty(TourTransportTyp))
             {
-           
-             
                 TourItem newTour = new TourItem(0, tourName, tourDescription, tourFrom, tourTo, tourName, tourDistance, tourTransportTyp);
 
                 //save to DB
@@ -58,6 +56,7 @@ namespace TourPlanner.ViewModels
                 TourFrom = string.Empty;
                 TourTo = string.Empty;
                 TourDescription = string.Empty;
+                TourDistance = string.Empty;
             }
             else
             {
