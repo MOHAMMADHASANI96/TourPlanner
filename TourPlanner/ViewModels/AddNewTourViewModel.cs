@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
@@ -16,7 +17,9 @@ namespace TourPlanner.ViewModels
         private string tourDescription;
         private string tourFrom;
         private string tourTo;
+        private string tourDistance;
         private string tourTransportTyp;
+
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
         private readonly Dictionary<string, List<string>> _errorsByPropertyName = new Dictionary<string, List<string>>();
@@ -39,15 +42,18 @@ namespace TourPlanner.ViewModels
         {
             if (!string.IsNullOrEmpty(TourName) && !string.IsNullOrEmpty(TourFrom) && !string.IsNullOrEmpty(TourTo) && !string.IsNullOrEmpty(TourDescription) && !string.IsNullOrEmpty(TourTransportTyp))
             {
-                int id = this.tourFactory.GetLastTourId();
-                TourItem newTour = new TourItem(id, tourName, tourDescription, tourFrom, tourTo, tourName, 0, tourTransportTyp);
+           
+             
+                TourItem newTour = new TourItem(0, tourName, tourDescription, tourFrom, tourTo, tourName, tourDistance, tourTransportTyp);
 
                 //save to DB
                 this.tourFactory.CreateTourItem(newTour);
+
                 //save image to Folder
                 this.tourFactory.SaveRouteImageFromApi(TourFrom, TourTo, TourName);
 
                 MessageBox.Show("New Tour Successfully added.");
+
                 TourName = string.Empty;
                 TourFrom = string.Empty;
                 TourTo = string.Empty;
@@ -140,11 +146,17 @@ namespace TourPlanner.ViewModels
             }
         }
 
-
-        private double tourDistance()
+        public string TourDistance
         {
-            // --------------------- 
-            return 0;
+            get { return tourDistance; }
+            set
+            {
+                if ((tourDistance != value) && (value != null))
+                {
+                    tourDistance = value;
+                    RaisePropertyChangedEvent(nameof(TourDistance));
+                }
+            }
         }
 
         public string TourName
@@ -212,9 +224,5 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-
-
-
-
     }
 }

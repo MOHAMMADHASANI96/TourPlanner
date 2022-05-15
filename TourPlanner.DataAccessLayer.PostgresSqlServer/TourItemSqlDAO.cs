@@ -38,7 +38,7 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
             database.DefineParameter(insertCommand, "@From", DbType.String, tourItem.From);
             database.DefineParameter(insertCommand, "@To", DbType.String, tourItem.To);
             database.DefineParameter(insertCommand, "@ImagePath", DbType.String, tourItem.ImagePath);
-            database.DefineParameter(insertCommand, "@Distance", DbType.Double, tourItem.Distance);
+            database.DefineParameter(insertCommand, "@Distance", DbType.String, tourItem.Distance);
             database.DefineParameter(insertCommand, "@TransportType", DbType.String, tourItem.TransportTyp);
 
             return FindTourItemById(database.ExecuteScalar(insertCommand));
@@ -84,7 +84,7 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
             database.DefineParameter(editCommand, "@From", DbType.String, tourItem.From);
             database.DefineParameter(editCommand, "@To", DbType.String, tourItem.To);
             database.DefineParameter(editCommand, "@ImagePath", DbType.String, tourItem.ImagePath);
-            database.DefineParameter(editCommand, "@Distance", DbType.Double, tourItem.Distance);
+            database.DefineParameter(editCommand, "@Distance", DbType.String, tourItem.Distance);
             database.DefineParameter(editCommand, "@TransportType", DbType.String, tourItem.TransportTyp);
             database.DefineParameter(editCommand, "@Id", DbType.Int32, tourItem.TourId);
 
@@ -116,7 +116,7 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
                             reader["from"].ToString(),
                             reader["to"].ToString(),
                             reader["image_path"].ToString(),
-                            Convert.ToDouble(reader["distance"]),
+                            reader["distance"].ToString(),
                             reader["transport_type"].ToString()
                         ));
                     }

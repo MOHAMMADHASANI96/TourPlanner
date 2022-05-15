@@ -9,13 +9,14 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 using TourPlanner.Models;
-using System.Web;
+
 
 namespace TourPlanner.BusinessLayer
 {
     public class MapQuestApiProcessor
     {
         public HttpClient ApiClient { get; set; }
+        public double distance = 0;
         private string RoutPhotoFolder;
         private string key;
         public MapQuestApiProcessor()
@@ -35,7 +36,7 @@ namespace TourPlanner.BusinessLayer
             return url;
         }
 
-        //return two strings
+        //return two strings 
         public async Task<Tuple<string, string>> DirectionApi(string url, string tourName)
         {
             using (HttpResponseMessage response = await ApiClient.GetAsync(url))
@@ -46,7 +47,6 @@ namespace TourPlanner.BusinessLayer
 
                     Root rootObject = JsonConvert.DeserializeObject<Root>(directionApiModel);
 
-                    //StaticMapApi(boundingBox, sessionId, tourName);
                     Tuple<string, string> tuple = RootInfo(rootObject);
                     return tuple;
                 }
@@ -62,13 +62,21 @@ namespace TourPlanner.BusinessLayer
 
             string sessionId = rootObject.route.sessionId;
             string boundingBox = rootObject.route.boundingBox.ul.lat + "," +
-                rootObject.route.boundingBox.ul.lng + "," +
-                rootObject.route.boundingBox.lr.lat + "," +
-                rootObject.route.boundingBox.lr.lng;
+                                 rootObject.route.boundingBox.ul.lng + "," +
+                                 rootObject.route.boundingBox.lr.lat + "," +
+                                 rootObject.route.boundingBox.lr.lng;
+
+            this.distance = rootObject.route.distance;
 
             Tuple<string, string> tuple = new Tuple<string, string>(sessionId, boundingBox);
             return tuple;
         }
+
+        public double GetDistance()
+        {
+            return this.distance;
+        }
+
 
         public string StaticUrlCreate(string sessionId, string boundingBox)
         {
@@ -107,10 +115,10 @@ namespace TourPlanner.BusinessLayer
             return path;
         }
 
-        public void DeleteImage(TourItem touritem)
+        public void DeleteImage(string touritem)
         {
-            string path = FilePathCreate(touritem.Name);
-            File.Delete(path);
+            FileInfo file = new FileInfo(FilePathCreate(touritem));
+            file.Delete();
         }
 
     }

@@ -24,6 +24,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Name:</Label>
@@ -32,8 +33,10 @@
             <TextBox Grid.Row="1" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding TourFrom}"/>
             <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">To:</Label>
             <TextBox Grid.Row="2" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding TourTo}"/>
-            <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Transport Typ:</Label>
-            <ComboBox  Width="300" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding TourTransportTyp}">
+            <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Distance:</Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding TourDistance}"/>
+            <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Transport Typ:</Label>
+            <ComboBox  Width="300" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding TourTransportTyp}">
                 <ComboBoxItem>Bus</ComboBoxItem>
                 <ComboBoxItem>Airplain</ComboBoxItem>
                 <ComboBoxItem>Car</ComboBoxItem>
@@ -41,8 +44,8 @@
                 <ComboBoxItem>Bicycle</ComboBoxItem>
                 <ComboBoxItem>Motorcycle</ComboBoxItem>
             </ComboBox>
-            <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">description:</Label>
-            <TextBox Grid.Row="4" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding TourDescription}"/>
+            <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">description:</Label>
+            <TextBox Grid.Row="5" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding TourDescription}"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

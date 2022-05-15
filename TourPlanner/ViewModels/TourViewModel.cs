@@ -32,6 +32,7 @@ namespace TourPlanner.ViewModels
         private string distance;
         private string totalTime;
         private string rating;
+        private string description;
 
         //command
         private ICommand addNewTour;
@@ -94,13 +95,19 @@ namespace TourPlanner.ViewModels
                     currentItem = value;
                     RaisePropertyChangedEvent(nameof(CurrentItem));
                     this.tourItemFactory = TourFactory.GetInstance();
+                    
                     currentTourImagePath = this.tourItemFactory.GetImageUrl(currentItem.ImagePath);
                     RaisePropertyChangedEvent(nameof(CurrentTourImagePath));
+                    
+                    this.description = DescriptionText(CurrentItem);
+                    RaisePropertyChangedEvent(nameof(Description));
+                    
                     FillLogBox(this.tourItemFactory.GetTourLog(currentItem));
 
                 }
             }
         }
+
         public TourLog CurrentLog
         {
             get
@@ -133,6 +140,33 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
+
+        private string DescriptionText(TourItem tourItem)
+        {
+            var descriptionText = "Name of tour: " + tourItem.Name +
+                                  "\nTour from : " + tourItem.From +
+                                  "\nTour Destination: " + tourItem.To +
+                                  "\nTour Distance: " + tourItem.Distance +
+                                  "\nTransport Typ: " + tourItem.TransportTyp +
+                                  "\nOther Description: " + tourItem.Description;
+
+            return descriptionText;
+
+        }
+
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                if ((description != value) && (value != null))
+                {
+                    description = value;
+                    RaisePropertyChangedEvent(nameof(Description));
+                }
+            }
+        }
+
 
         public string CurrentTourImagePath
         {
@@ -249,19 +283,25 @@ namespace TourPlanner.ViewModels
         {
             if (CurrentItem != null)
             {
+                //clear image path
+                currentTourImagePath = null;
+                RaisePropertyChangedEvent(nameof(CurrentTourImagePath));
                 MessageBoxResult result = MessageBox.Show("Would you like to Delete this Tour?", "Delete Tour", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        TourLogs.Clear();
-                        currentTourImagePath = null;
-                        RaisePropertyChangedEvent(nameof(CurrentTourImagePath));
-                        this.tourItemFactory.DeleteTourItem(CurrentItem);
-                        MessageBox.Show("Tour Deleted", "Delete Tour");
-                        this.tourItemFactory = TourFactory.GetInstance();
-                        IEnumerable<TourItem> results = this.tourItemFactory.GetItems();
-                        FillListBox(results);
-                        break;
+                        {
+                            //Clear LogBox
+                            TourLogs.Clear();
+                            //Delete Tour
+                            this.tourItemFactory.DeleteTourItem(CurrentItem);
+                            MessageBox.Show("Tour Deleted", "Delete Tour");
+                            this.tourItemFactory = TourFactory.GetInstance();
+                            IEnumerable<TourItem> results = this.tourItemFactory.GetItems();
+                            FillListBox(results);
+                            break;
+                        }
+                        
                     case MessageBoxResult.No:
                         break;
                 }

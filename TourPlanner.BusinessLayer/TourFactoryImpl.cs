@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Threading.Tasks;
 using TourPlanner.DataAccessLayer.Common;
 using TourPlanner.DataAccessLayer.DAO;
 using TourPlanner.Models;
@@ -66,6 +67,7 @@ namespace TourPlanner.BusinessLayer
 
             mapQuestApiProcessor.StaticMapApi(staticUrl, tourName);
         }
+
         public string GetImageUrl(string tourName)
         {
             string path = RoutPhotoFolder + "\\" + tourName + ".png";
@@ -88,9 +90,10 @@ namespace TourPlanner.BusinessLayer
         {
             ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
             tourItemDAO.DeleteTourItem(tourItem);
+            //DeleteImageTour(tourItem.Name);
         }
 
-        public void DeleteImageTour(TourItem tourItem)
+        public void DeleteImageTour(string tourItem)
         {
             mapQuestApiProcessor.DeleteImage(tourItem);
         }

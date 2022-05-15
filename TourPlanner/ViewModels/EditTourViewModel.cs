@@ -38,7 +38,7 @@ namespace TourPlanner.ViewModels
             if (!string.IsNullOrEmpty(CurrentTour.Name) && !string.IsNullOrEmpty(CurrentTour.From) && !string.IsNullOrEmpty(CurrentTour.To) && !string.IsNullOrEmpty(CurrentTour.Description) && !string.IsNullOrEmpty(CurrentTour.TransportTyp))
             {
                 int id = CurrentTour.TourId;
-                TourItem editTour = new TourItem(id, CurrentTour.Name, CurrentTour.Description, CurrentTour.From, CurrentTour.To, CurrentTour.Name, 0 , CurrentTour.TransportTyp);
+                TourItem editTour = new TourItem(id, CurrentTour.Name, CurrentTour.Description, CurrentTour.From, CurrentTour.To, CurrentTour.Name, CurrentTour.Distance , CurrentTour.TransportTyp);
 
                 //save to DB
                 this.tourFactory.EditTourItem(editTour);

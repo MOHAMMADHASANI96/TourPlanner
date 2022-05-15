@@ -14,10 +14,10 @@ namespace TourPlanner.Models
         public string From { get; set; }
         public string To { get; set; }
         public string ImagePath { get; set; }
-        public double Distance { get; set; }
+        public string Distance { get; set; }
         public string TransportTyp { get; set; }
 
-        public TourItem(int tourId, string name, string description, string from, string to, string imagePath, double distance, string transportTyp)
+        public TourItem(int tourId, string name, string description, string from, string to, string imagePath, string distance, string transportTyp)
         {
             this.TourId = tourId;
             this.Name = name;

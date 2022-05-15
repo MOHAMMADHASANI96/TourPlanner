@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TourPlanner.Models;
 
 namespace TourPlanner.BusinessLayer
@@ -16,7 +17,7 @@ namespace TourPlanner.BusinessLayer
         public void SaveRouteImageFromApi(string from, string to, string tourName);
 
         //search
-        IEnumerable<TourItem> Search(String itemName, bool caseSensitive = false);
+        IEnumerable<TourItem> Search(string itemName, bool caseSensitive = false);
 
         // create
         TourItem CreateTourItem(TourItem tourItem);
@@ -28,7 +29,7 @@ namespace TourPlanner.BusinessLayer
 
         //delete
         void DeleteTourItem(TourItem tourItem);
-        void DeleteImageTour(TourItem tourItem);
+        void DeleteImageTour(string tourItem);
         void DeleteTourLog(TourLog tourLog);
 
 
