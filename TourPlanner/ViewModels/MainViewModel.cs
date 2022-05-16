@@ -25,8 +25,13 @@ namespace TourPlanner.ViewModels
                 SearchTours(searchName);
             };
 
+            tourListVM.CurrentItemChanged += (_, currentItem) =>
+            {
+                menuViewModel.CurrentTour = currentItem;
+            };
             this.tourListVM = tourListVM;
             tourListVM.FillListBox(result);
+
         }
 
         private void SearchTours(string searchText)

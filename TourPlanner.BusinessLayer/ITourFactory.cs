@@ -22,6 +22,7 @@ namespace TourPlanner.BusinessLayer
         // create
         TourItem CreateTourItem(TourItem tourItem);
         TourLog CreateTourLog(TourLog tourLog);
+        void PdfGenerate(TourItem tourItem, IEnumerable<TourLog> TourLog);
 
         // edit
         TourItem EditTourItem(TourItem tourItem);

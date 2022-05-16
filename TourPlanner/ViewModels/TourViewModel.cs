@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -12,9 +13,11 @@ namespace TourPlanner.ViewModels
 {
     public class TourViewModel : BaseViewModel
     {
+        public event EventHandler<TourItem> CurrentItemChanged;
+
         private ITourFactory tourItemFactory;
         private IEnumerable<TourLog> tourLogs;
-
+       
 
         private TourItem currentItem;
         private TourLog currentLog;
@@ -22,6 +25,7 @@ namespace TourPlanner.ViewModels
         public EditTourViewModel editTourViewModel;
         public EditLogViewModel editLogViewModel;
         public AddNewLogViewModel addNewLogViewModel;
+        public MenuViewModel menuViewModel;
 
         //Tour items variable 
         private string currentTourImagePath;
@@ -60,6 +64,8 @@ namespace TourPlanner.ViewModels
         {
             TourItems = new ObservableCollection<TourItem>();
             TourLogs = new ObservableCollection<TourLog>();
+            menuViewModel = new MenuViewModel();
+
         }
 
         // Fill Tour ListBox
@@ -101,7 +107,9 @@ namespace TourPlanner.ViewModels
                     
                     this.description = DescriptionText(CurrentItem);
                     RaisePropertyChangedEvent(nameof(Description));
-                    
+
+                    this.CurrentItemChanged?.Invoke(this, CurrentItem);
+
                     FillLogBox(this.tourItemFactory.GetTourLog(currentItem));
 
                 }

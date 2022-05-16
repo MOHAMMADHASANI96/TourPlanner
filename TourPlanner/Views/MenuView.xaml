@@ -12,8 +12,8 @@
         <MenuItem Header="_File">
             <MenuItem Header="_Import" />
             <MenuItem Header="_Export" />
-            <MenuItem Header="_PDF" />
-            <MenuItem Header="_PDF All" />
+            <MenuItem Header="_PDF" Command="{Binding CreatePDF}"/>
+            <MenuItem Header="_PDF All"/>
             <Separator />
             <MenuItem Header="_Exit" Command="{Binding Exit}"/>
         </MenuItem>
