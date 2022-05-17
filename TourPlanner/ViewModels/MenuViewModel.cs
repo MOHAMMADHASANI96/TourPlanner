@@ -12,7 +12,7 @@ namespace TourPlanner.ViewModels
         
         
         private TourItem currentTour;
-        
+        private bool active = false;
         private IEnumerable<TourLog> tourLogs;
 
 
@@ -36,6 +36,19 @@ namespace TourPlanner.ViewModels
                 {
                     currentTour = value;
                     RaisePropertyChangedEvent(nameof(CurrentTour));
+                }
+            }
+        }
+
+        public bool Active
+        {
+            get { return active; }
+            set
+            {
+                if ((active != value) && (value != null))
+                {
+                    active = value;
+                    RaisePropertyChangedEvent(nameof(Active));
                 }
             }
         }
@@ -70,9 +83,11 @@ namespace TourPlanner.ViewModels
         //Create PDF file
         private void PerformCreatePDF(object commandParameter)
         {
-            Logs = this.tourFactory.GetTourLog(CurrentTour);
-            this.tourFactory.PdfGenerate(CurrentTour, Logs);
+            if(CurrentTour != null)
+            {
+                Logs = this.tourFactory.GetTourLog(CurrentTour);
+                this.tourFactory.PdfGenerate(CurrentTour, Logs);
+            }
         }
-
     }
 }

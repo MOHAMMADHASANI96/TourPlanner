@@ -1,28 +1,28 @@
-﻿using System;
+﻿
+
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
 using TourPlanner.Models;
-using TourPlanner.ViewModels;
 using TourPlanner.ViewModels.Abstract;
 
 namespace TourPlanner.ViewModels
 {
-    public class AddNewTourViewModel: BaseViewModel
+    public class AddNewTourViewModel: BaseViewModel,IDataErrorInfo
     {
         private string tourName;
         private string tourDescription;
         private string tourFrom;
         private string tourTo;
         private string tourDistance;
-        private string tourTransportTyp;
+        private string tourTransportType;
 
-
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-        private readonly Dictionary<string, List<string>> _errorsByPropertyName = new Dictionary<string, List<string>>();
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private ITourFactory tourFactory;
 
@@ -40,9 +40,9 @@ namespace TourPlanner.ViewModels
 
         private void AddNewTour(object commandParameter)
         {
-            if (!string.IsNullOrEmpty(TourName) && !string.IsNullOrEmpty(TourFrom) && !string.IsNullOrEmpty(TourTo) && !string.IsNullOrEmpty(TourDescription) && !string.IsNullOrEmpty(TourTransportTyp))
+            if (!string.IsNullOrEmpty(TourName) && !string.IsNullOrEmpty(TourFrom) && !string.IsNullOrEmpty(TourTo) && !string.IsNullOrEmpty(TourDescription) && !string.IsNullOrEmpty(TourTransportType))
             {
-                TourItem newTour = new TourItem(0, tourName, tourDescription, tourFrom, tourTo, tourName, tourDistance, tourTransportTyp);
+                TourItem newTour = new TourItem(0, tourName, tourDescription, tourFrom, tourTo, tourName, tourDistance, tourTransportType);
 
                 //save to DB
                 this.tourFactory.CreateTourItem(newTour);
@@ -60,10 +60,7 @@ namespace TourPlanner.ViewModels
             }
             else
             {
-                CheckInputTourName();
-                CheckInputTourFrom();
-                CheckInputTourTo();
-                CheckInputTourDescription();
+                MessageBox.Show(Error);
             }
 
         }
@@ -75,76 +72,7 @@ namespace TourPlanner.ViewModels
         }
 
 
-        public bool CheckInputTourName()
-        {
-            ClearErrors(nameof(TourName));
-            if (string.IsNullOrWhiteSpace(TourName))
-            {
-                AddError(nameof(TourName), "Name cannot be empty.");
-                return false;
-            }
-            return true;
-        }
-
-        public bool CheckInputTourFrom()
-        {
-            ClearErrors(nameof(TourFrom));
-            if (string.IsNullOrWhiteSpace(TourFrom))
-            {
-                AddError(nameof(TourFrom), "Starting Point cannot be empty.");
-                return false;
-            }
-            return true;
-        }
-
-        public bool CheckInputTourTo()
-        {
-            ClearErrors(nameof(TourTo));
-            if (string.IsNullOrWhiteSpace(TourTo))
-            {
-                AddError(nameof(TourTo), "Destination cannot be empty.");
-                return false;
-            }
-            return true;
-        }
-
-        public bool CheckInputTourDescription()
-        {
-            ClearErrors(nameof(TourDescription));
-            if (string.IsNullOrWhiteSpace(TourDescription))
-            {
-                AddError(nameof(TourDescription), "Description cannot be empty.");
-                return false;
-            }
-            return true;
-        }
-
-        private void OnErrorsChanged(string propertyName)
-        {
-            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
-        }
-
-        private void AddError(string propertyName, string error)
-        {
-            if (!_errorsByPropertyName.ContainsKey(propertyName))
-                _errorsByPropertyName[propertyName] = new List<string>();
-
-            if (!_errorsByPropertyName[propertyName].Contains(error))
-            {
-                _errorsByPropertyName[propertyName].Add(error);
-                OnErrorsChanged(propertyName);
-            }
-        }
-
-        private void ClearErrors(string propertyName)
-        {
-            if (_errorsByPropertyName.ContainsKey(propertyName))
-            {
-                _errorsByPropertyName.Remove(propertyName);
-                OnErrorsChanged(propertyName);
-            }
-        }
-
+       
         public string TourDistance
         {
             get { return tourDistance; }
@@ -211,17 +139,51 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public string TourTransportTyp
+        public string TourTransportType
         {
-            get { return tourTransportTyp; }
+            get { return tourTransportType; }
             set
             {
-                if ((tourTransportTyp != value) && (value != null))
+                if ((tourTransportType != value) && (value != null))
                 {
-                    tourTransportTyp = value;
-                    RaisePropertyChangedEvent(nameof(TourTransportTyp));
+                    tourTransportType = value;
+                    RaisePropertyChangedEvent(nameof(TourTransportType));
                 }
             }
         }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                return GetErrorForProperty(propertyName);
+            }
+        }
+
+        public string Error { get; set; } = "";
+        private string GetErrorForProperty(string propertyName)
+        {
+            Error = "";
+
+            switch (propertyName)
+            {
+                case "TourName":
+                    if (string.IsNullOrEmpty(TourName))
+                    {
+                        Error = "TourName length must be >= 5";
+                        return Error;
+                    }
+                    break;
+            }
+
+            return string.Empty;
+        }
+
+
+        protected void NotifyPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
     }
 }

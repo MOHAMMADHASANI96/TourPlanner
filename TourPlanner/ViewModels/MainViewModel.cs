@@ -27,7 +27,10 @@ namespace TourPlanner.ViewModels
 
             tourListVM.CurrentItemChanged += (_, currentItem) =>
             {
+                //give CurrentTour and pass to menu ViewModel
                 menuViewModel.CurrentTour = currentItem;
+                //After clicking on the Current Tour to give a pdf, "pdf MenuItem" will be activated
+                menuViewModel.Active = true;
             };
             this.tourListVM = tourListVM;
             tourListVM.FillListBox(result);

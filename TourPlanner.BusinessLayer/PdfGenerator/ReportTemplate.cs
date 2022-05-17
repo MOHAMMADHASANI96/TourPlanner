@@ -24,7 +24,7 @@ namespace TourPlanner.BusinessLayer.PdfGenerator
                 {
                     page.Margin(50);
 
-                    page.Header().Element(ComposeHeader);
+                    page.Header().BorderColor(Colors.Black).Element(ComposeHeader);
                     page.Content().Padding(10).Element(ComposeTable);
                     page.Footer().AlignCenter().Text(x =>
                     {
