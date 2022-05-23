@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 using TourPlanner.BusinessLayer.PdfGenerator;
 using TourPlanner.DataAccessLayer.Common;
 using TourPlanner.DataAccessLayer.DAO;
 using TourPlanner.Models;
+using System.IO;
 
 namespace TourPlanner.BusinessLayer
 {
@@ -18,12 +19,14 @@ namespace TourPlanner.BusinessLayer
 
         public string RoutPhotoFolder { get; set; }
         public string RoutPDFFolder { get; set; }
+        public string RoutExportFolder { get; set; }
 
 
         public TourFactoryImpl()
         {
             RoutPhotoFolder = ConfigurationManager.AppSettings["RoutPhotoFolder"];
             RoutPDFFolder = ConfigurationManager.AppSettings["RoutPDFFolder"];
+            RoutExportFolder = ConfigurationManager.AppSettings["RoutExportFolder"];
         }
 
         //Get Tour Item 
@@ -72,6 +75,13 @@ namespace TourPlanner.BusinessLayer
             return tourItemDAO.GetLastTourId();
         }
 
+        //get Tour by Name
+        public TourItem FindTourItemByName(string name)
+        {
+            ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
+            return tourItemDAO.FindTourItemByName(name);
+        }
+
         // Save Image in Folder
         public async void SaveRouteImageFromApi(string from, string to, string tourName)
         {
@@ -109,7 +119,13 @@ namespace TourPlanner.BusinessLayer
         {
             ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
             tourItemDAO.DeleteTourItem(tourItem);
-            //DeleteImageTour(tourItem.Name);
+        }
+
+        //Delete All Tour Item
+        public void DeleteAllTourItems()
+        {
+            ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
+            tourItemDAO.DeleteAllTourItems();
         }
 
         //Delete Tour Image
@@ -132,14 +148,88 @@ namespace TourPlanner.BusinessLayer
             return pdfPath;
         }
 
-        public void PdfGenerate(TourItem tourItem, IEnumerable<TourLog> TourLog)
+        //create pdf file
+        public bool PdfGenerate(TourItem tourItem, IEnumerable<TourLog> TourLog)
         {
-            string pdfPath = GetPdfFilePath(tourItem.Name);
+            try
+            {
+                string pdfPath = GetPdfFilePath(tourItem.Name);
 
-            PdfDataSource pdfDataSource = new PdfDataSource();
-            PdfQuest model = pdfDataSource.GetDetials(tourItem, TourLog);
-            var document = new ReportTemplate(model);
-            document.GeneratePdf(pdfPath);
+                PdfDataSource pdfDataSource = new PdfDataSource();
+                PdfQuest model = pdfDataSource.GetDetials(tourItem, TourLog);
+                var document = new ReportTemplate(model);
+                document.GeneratePdf(pdfPath);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }  
+        }
+
+        // create path for export file
+        public string GetExportPath()
+        {
+            string fileName = System.DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
+            string exportPath = RoutExportFolder + "\\" + fileName + ".json";
+            return exportPath;
+        }
+
+        // create Export File
+        public bool ExportGenerate(List<Export> exportObjects)
+        {
+            try
+            {
+                string exportPath = GetExportPath();
+
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.NullValueHandling = NullValueHandling.Ignore;
+                using (StreamWriter sw = new StreamWriter(exportPath))
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, exportObjects);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        // Import file
+        public bool ImportFile(string filePath)
+        {
+            try
+            {
+                DeleteAllTourItems();
+
+                string json = File.ReadAllText(filePath);
+                List<Export> exportObjects = JsonConvert.DeserializeObject<List<Export>>(json);
+
+                foreach (Export exportObject in exportObjects)
+                {
+                    TourItem tourItem = new TourItem(0, exportObject.TourItem.Name, exportObject.TourItem.Description, exportObject.TourItem.From, exportObject.TourItem.To, exportObject.TourItem.ImagePath, exportObject.TourItem.Distance, exportObject.TourItem.TransportTyp);
+                    CreateTourItem(tourItem);
+                    if (exportObject.TourLog != null)
+                    {
+                        TourItem tour = FindTourItemByName(tourItem.Name);
+                        foreach (TourLog tourLog in exportObject.TourLog)
+                        {
+
+                            TourLog log = new TourLog(0, tourLog.DateTime, tourLog.Report, tourLog.Difficulty, tourLog.TotalTime, tourLog.Rating, tour);
+                            CreateTourLog(log);
+                        }
+                    }
+                }
+
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }    
         }
     }
 }

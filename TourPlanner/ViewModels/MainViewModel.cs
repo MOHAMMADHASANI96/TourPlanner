@@ -32,6 +32,13 @@ namespace TourPlanner.ViewModels
                 //After clicking on the Current Tour to give a pdf, "pdf MenuItem" will be activated
                 menuViewModel.Active = true;
             };
+
+            // after import file FillListBox should be update
+            menuViewModel.ImportSuccessful += (_, importSuccesfully) =>
+            {
+                this.result = this.tourItemFactory.GetItems();
+                tourListVM.FillListBox(result);
+            };
             this.tourListVM = tourListVM;
             tourListVM.FillListBox(result);
 

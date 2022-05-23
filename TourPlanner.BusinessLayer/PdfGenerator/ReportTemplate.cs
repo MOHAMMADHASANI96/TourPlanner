@@ -6,6 +6,8 @@ using TourPlanner.Models;
 
 namespace TourPlanner.BusinessLayer.PdfGenerator
 {
+
+    //--https://www.questpdf.com/documentation/getting-started.html#content-implementation
     public class ReportTemplate : IDocument
     {
         public PdfQuest Model { get; }

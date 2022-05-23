@@ -10,8 +10,8 @@
              >
     <Menu Grid.Row="0">
         <MenuItem Header="_File">
-            <MenuItem Header="_Import" />
-            <MenuItem Header="_Export" />
+            <MenuItem Header="_Import" Command="{Binding CreateImport}"/>
+            <MenuItem Header="_Export" Command="{Binding CreateExport}"/>
             <MenuItem Header="_PDF" IsEnabled="{Binding Active}" Command="{Binding CreatePDF}"/>
             <MenuItem Header="_PDF All"/>
             <Separator />

@@ -11,5 +11,7 @@ namespace TourPlanner.DataAccessLayer.DAO
         int GetLastTourId();
         TourItem EditTourItem(TourItem tourItem);
         void DeleteTourItem(TourItem tourItem);
+        void DeleteAllTourItems();
+        TourItem FindTourItemByName(string tourName);
     }
 }

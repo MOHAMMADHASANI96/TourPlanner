@@ -7,29 +7,33 @@ namespace TourPlanner.BusinessLayer
 {
     public interface ITourFactory
     {
-        //Get 
+        // Get 
         IEnumerable<TourItem> GetItems();
         IEnumerable<TourLog> GetTourLog(TourItem tourItem);
         string GetImageUrl(string tourName);
         int GetLastTourId();
+        TourItem FindTourItemByName(string tourName);
 
-        // save image 
+        // Save image 
         public void SaveRouteImageFromApi(string from, string to, string tourName);
 
-        //search
+        // Search
         IEnumerable<TourItem> Search(string itemName, bool caseSensitive = false);
 
-        // create
+        // Create
         TourItem CreateTourItem(TourItem tourItem);
         TourLog CreateTourLog(TourLog tourLog);
-        void PdfGenerate(TourItem tourItem, IEnumerable<TourLog> TourLog);
+        bool PdfGenerate(TourItem tourItem, IEnumerable<TourLog> TourLog);
+        bool ExportGenerate(List<Export> exportObjects);
+        bool ImportFile(string filePath);
 
-        // edit
+        // Edit
         TourItem EditTourItem(TourItem tourItem);
         TourLog EditTourLog(TourLog tourLog);
 
-        //delete
+        // Delete
         void DeleteTourItem(TourItem tourItem);
+        void DeleteAllTourItems();
         void DeleteImageTour(string tourItem);
         void DeleteTourLog(TourLog tourLog);
 

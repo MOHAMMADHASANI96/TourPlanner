@@ -13,6 +13,7 @@ namespace TourPlanner.ViewModels
 {
     public class TourViewModel : BaseViewModel
     {
+        // if current item selected -> active button pdf  
         public event EventHandler<TourItem> CurrentItemChanged;
 
         private ITourFactory tourItemFactory;

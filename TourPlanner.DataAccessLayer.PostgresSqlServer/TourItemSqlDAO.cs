@@ -12,11 +12,13 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
     public class TourItemSqlDAO : ITourItemDAO
     {
         private const string SQL_FIND_BY_ID = "SELECT * FROM public.\"tour_item\" WHERE \"tour_item_id\"=@Id;";
+        private const string SQL_FIND_BY_Name = "SELECT * FROM public.\"tour_item\" WHERE \"name\"=@Name;";
         private const string SQL_GET_ALL_TOURS = "SELECT * FROM public.\"tour_item\";";
         private const string SQL_INSERT_NEW_TOUR = "INSERT INTO public.\"tour_item\" (\"name\", \"description\", \"from\",\"to\",\"image_path\",\"distance\" ,\"transport_type\" ) VALUES (@Name, @Description, @From , @To , @ImagePath , @Distance , @TransportType) RETURNING \"tour_item_id\";";
         private const string SQL_GET_LAST_TOURID = "SELECT * FROM public.\"tour_item\" ORDER BY \"tour_item_id\" DESC LIMIT 1;";
         private const string SQL_PUT_TOUR_BY_ID = "Update public.\"tour_item\" SET \"name\"=@Name , \"description\" =@Description , \"from\"=@From ,\"to\"=@To ,\"image_path\" =@ImagePath ,\"distance\"= @Distance ,\"transport_type\"=@TransportType WHERE \"tour_item_id\"=@Id ;";
         private const string SQL_DELETE_BY_ID = "DELETE FROM public.\"tour_item\" WHERE \"tour_item_id\"=@Id;";
+        private const string SQL_DELETE_All_TOURS = "DELETE FROM public.\"tour_item\"";
 
         private IDatabase database;
 
@@ -49,6 +51,17 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
         {
             DbCommand findCommand = database.CreateCommand(SQL_FIND_BY_ID);
             database.DefineParameter(findCommand, "@Id", DbType.Int32, tourItemId);
+
+            IEnumerable<TourItem> tours = QueryToursFromDb(findCommand);
+
+            return tours.FirstOrDefault();
+        }
+
+        // find tourItem by Name
+        public TourItem FindTourItemByName(string tourName)
+        {
+            DbCommand findCommand = database.CreateCommand(SQL_FIND_BY_Name);
+            database.DefineParameter(findCommand, "@Name", DbType.String, tourName);
 
             IEnumerable<TourItem> tours = QueryToursFromDb(findCommand);
 
@@ -96,6 +109,13 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
         {
             DbCommand deleteCommand = database.CreateCommand(SQL_DELETE_BY_ID);
             database.DefineParameter(deleteCommand, "@Id", DbType.Int32, tourItem.TourId);
+            database.ExecuteScalar(deleteCommand);
+        }
+
+        // delete TourItem
+        public void DeleteAllTourItems()
+        {
+            DbCommand deleteCommand = database.CreateCommand(SQL_DELETE_All_TOURS);
             database.ExecuteScalar(deleteCommand);
         }
 
