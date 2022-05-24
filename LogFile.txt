@@ -1,0 +1,4 @@
+10:46:30,989 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+10:49:32,699 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+10:52:04,374 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+10:53:23,112 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------

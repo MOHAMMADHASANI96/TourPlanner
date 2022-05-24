@@ -5,7 +5,6 @@ using System.Windows.Input;
 using TourPlanner.BusinessLayer;
 using TourPlanner.BusinessLayer.ExportGenerator;
 using TourPlanner.Models;
-using TourPlanner.ViewModels;
 using TourPlanner.ViewModels.Abstract;
 
 namespace TourPlanner.ViewModels
@@ -99,7 +98,10 @@ namespace TourPlanner.ViewModels
             {
                 Logs = this.tourFactory.GetTourLog(CurrentTour);
                 if (this.tourFactory.PdfGenerate(CurrentTour, Logs))
+                {
                     MessageBox.Show("PDF File created");
+                }
+                    
                 else
                     MessageBox.Show("PDF File doese not created");
             }
@@ -136,10 +138,7 @@ namespace TourPlanner.ViewModels
                 }
                 else
                     MessageBox.Show("Import does not successful");
-
             }
-            else
-                MessageBox.Show("File Format is not correct");
         }
     }
 }

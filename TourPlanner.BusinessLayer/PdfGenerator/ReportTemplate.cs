@@ -40,11 +40,13 @@ namespace TourPlanner.BusinessLayer.PdfGenerator
         {
             var titleStyle = TextStyle.Default.FontSize(20).SemiBold().FontColor(Colors.Blue.Medium);
             container
+                .Border(1)
+                .Padding(20)
                 .Row(row =>
                 {
                     row.RelativeItem().Column(column =>
                     {
-                        column.Item().Text($"Tour Name: {Model.TourItem.Name}").Style(titleStyle);
+                        column.Item().Text($"Tour Name: {Model.TourItem.Name}").Style(titleStyle).Black();
 
                         column.Item().Text(text =>
                         {
@@ -72,7 +74,6 @@ namespace TourPlanner.BusinessLayer.PdfGenerator
 
                     });
 
-                    //row.ConstantItem(100).Height(100).Image(Model.Image, ImageScaling.FitArea);
                 });
         }
 
@@ -86,8 +87,12 @@ namespace TourPlanner.BusinessLayer.PdfGenerator
                      column.Item().Image(Model.Image, ImageScaling.FitArea);
                  });
 
-                 column.Item().Table(table =>
+                 column
+                 .Item()
+                 .Padding(10)
+                 .Table(table =>
                  {
+
                      // step 1
                      table.ColumnsDefinition(columns =>
                      {

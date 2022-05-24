@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -9,10 +10,15 @@ using TourPlanner.ViewModels;
 using TourPlanner.ViewModels.Abstract;
 using TourPlanner.Views;
 
+
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "App.config", Watch = true)]
+
 namespace TourPlanner.ViewModels
 {
     public class TourViewModel : BaseViewModel
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(TourViewModel));
+
         // if current item selected -> active button pdf  
         public event EventHandler<TourItem> CurrentItemChanged;
 
@@ -66,7 +72,8 @@ namespace TourPlanner.ViewModels
             TourItems = new ObservableCollection<TourItem>();
             TourLogs = new ObservableCollection<TourLog>();
             menuViewModel = new MenuViewModel();
-
+            log4net.Config.XmlConfigurator.Configure();
+            Log.Info("-----------START LOG------------");
         }
 
         // Fill Tour ListBox
