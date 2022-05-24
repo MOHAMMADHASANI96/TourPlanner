@@ -17,7 +17,7 @@ namespace TourPlanner.ViewModels
 {
     public class TourViewModel : BaseViewModel
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(TourViewModel));
+        private static readonly ILog log = LogManager.GetLogger(typeof(TourViewModel));
 
         // if current item selected -> active button pdf  
         public event EventHandler<TourItem> CurrentItemChanged;
@@ -73,7 +73,7 @@ namespace TourPlanner.ViewModels
             TourLogs = new ObservableCollection<TourLog>();
             menuViewModel = new MenuViewModel();
             log4net.Config.XmlConfigurator.Configure();
-            Log.Info("-----------START LOG------------");
+            log.Info("-----------START LOG------------");
         }
 
         // Fill Tour ListBox
@@ -84,6 +84,8 @@ namespace TourPlanner.ViewModels
             {
                 TourItems.Add(item);
             }
+            //save to log file
+            log.Info("Filling Tour ListBox DONE!");
         }
 
         // Fill Log ListBox
@@ -94,6 +96,8 @@ namespace TourPlanner.ViewModels
             {
                 TourLogs.Add(item);
             }
+            //save to log file
+            log.Info("Filling Log ListBox DONE!");
         }
 
         public TourItem CurrentItem

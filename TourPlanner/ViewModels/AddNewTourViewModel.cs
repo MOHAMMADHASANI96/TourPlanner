@@ -15,6 +15,8 @@ namespace TourPlanner.ViewModels
 {
     public class AddNewTourViewModel: BaseViewModel,IDataErrorInfo
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private string tourName;
         private string tourDescription;
         private string tourFrom;
@@ -50,8 +52,13 @@ namespace TourPlanner.ViewModels
                 //save image to Folder
                 this.tourFactory.SaveRouteImageFromApi(TourFrom, TourTo, TourName);
 
+                //show successfully message
                 MessageBox.Show("New Tour Successfully added.");
-
+                
+                //save to log file
+                log.Info("Adding new Tour DONE!");
+                
+                //empty all field
                 TourName = string.Empty;
                 TourFrom = string.Empty;
                 TourTo = string.Empty;
@@ -61,6 +68,8 @@ namespace TourPlanner.ViewModels
             else
             {
                 MessageBox.Show(Error);
+                //save to log file
+                log.Info("FAILED to add a new tour!");
             }
 
         }

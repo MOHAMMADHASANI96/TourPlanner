@@ -9,6 +9,8 @@ namespace TourPlanner.ViewModels
 {
     public class AddNewLogViewModel : BaseViewModel
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private DateTime logDate;
         private string logDifficulty;
         private TimeSpan logTotalTime;
@@ -116,8 +118,14 @@ namespace TourPlanner.ViewModels
 
                 //save to DB
                 this.tourFactory.CreateTourLog(newLog);
+                
+                // save to lof file
+                log.Info("Adding new Log DONE!");
 
+                //Show Successfully Message 
                 MessageBox.Show("New TourLog Successfully added.");
+                
+                //empty filed 
                 LogDate = DateTime.MinValue;
                 LogDifficulty = string.Empty;
                 LogReport = string.Empty;

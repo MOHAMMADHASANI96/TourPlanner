@@ -7,6 +7,8 @@ namespace TourPlanner.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private ITourFactory tourItemFactory;
         private readonly TourViewModel tourListVM;
         IEnumerable<TourItem> result;
@@ -31,13 +33,20 @@ namespace TourPlanner.ViewModels
                 menuViewModel.CurrentTour = currentItem;
                 //After clicking on the Current Tour to give a pdf, "pdf MenuItem" will be activated
                 menuViewModel.Active = true;
+
+                //save to log file
+                log.Info("Active PDF MenuItem!");
             };
 
             // after import file FillListBox should be update
             menuViewModel.ImportSuccessful += (_, importSuccesfully) =>
             {
+                //get all Tour Item anf fill list box
                 this.result = this.tourItemFactory.GetItems();
                 tourListVM.FillListBox(result);
+                
+                //save to log file
+                log.Info("Updating MainScreen after Import File Done!");
             };
             this.tourListVM = tourListVM;
             tourListVM.FillListBox(result);

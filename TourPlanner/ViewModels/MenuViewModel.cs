@@ -11,6 +11,7 @@ namespace TourPlanner.ViewModels
 {
     public class MenuViewModel : BaseViewModel
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         // after import file -> listbox should be change 
         public event EventHandler<bool> ImportSuccessful;
@@ -100,10 +101,19 @@ namespace TourPlanner.ViewModels
                 if (this.tourFactory.PdfGenerate(CurrentTour, Logs))
                 {
                     MessageBox.Show("PDF File created");
+                    
+                    //save to log file
+                    log.Info("Creating PDF File DONE!");
                 }
                     
                 else
+                {
                     MessageBox.Show("PDF File doese not created");
+                    
+                    //save to log file
+                    log.Info("FAILED Creating PDF File!");
+                }
+                    
             }
         }
 
@@ -112,9 +122,19 @@ namespace TourPlanner.ViewModels
         {
             ExportGenerator export = new ExportGenerator();
             if(this.tourFactory.ExportGenerate(export.Export()))
+            {
                 MessageBox.Show("Export File created");
+                //save to log file
+                log.Info("Creating Export File DONE!");
+            }
+                
             else
+            {
                 MessageBox.Show("Export File doese not created");
+                //save to log file
+                log.Info("FAILED Creating Export File!");
+            }
+               
         }
 
 
@@ -132,12 +152,21 @@ namespace TourPlanner.ViewModels
 
                 if (this.tourFactory.ImportFile(filePath))
                 {
+                    //save to log file
+                    log.Info("Importing File DONE!");
+
                     MessageBox.Show("Import successful");
                     this.importSuccessfull = true;
                     this.ImportSuccessful?.Invoke(this, this.importSuccessfull);
+                        
                 }
                 else
+                {
                     MessageBox.Show("Import does not successful");
+                    //save to log file
+                    log.Info("FAILED importing File!");
+                }
+                    
             }
         }
     }

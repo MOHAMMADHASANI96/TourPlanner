@@ -8,6 +8,8 @@ namespace TourPlanner.ViewModels
 {
     public class EditTourViewModel: BaseViewModel
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private TourItem currentTour;
         private ITourFactory tourFactory;
 
@@ -42,6 +44,10 @@ namespace TourPlanner.ViewModels
 
                 //save to DB
                 this.tourFactory.EditTourItem(editTour);
+
+                // save to lof file
+                log.Info("Editing Tour DONE!");
+
                 //Save image to Folder
                 this.tourFactory.SaveRouteImageFromApi(CurrentTour.From, CurrentTour.To, CurrentTour.Name);
 

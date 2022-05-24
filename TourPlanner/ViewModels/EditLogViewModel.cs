@@ -9,6 +9,8 @@ namespace TourPlanner.ViewModels
 {
     public class EditLogViewModel : BaseViewModel
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private TourLog currentLog;
         private TourItem currentTour;
         private ITourFactory tourFactory;
@@ -58,6 +60,9 @@ namespace TourPlanner.ViewModels
 
                 //save to DB
                 this.tourFactory.EditTourLog(editLog);
+
+                //save to log file
+                log.Info("Editing Tour DONE!");
 
                 //Show Successfully Message 
                 MessageBox.Show("Edit Log Successfully added.");
