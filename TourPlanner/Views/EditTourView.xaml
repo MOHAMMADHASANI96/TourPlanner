@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:TourPlanner.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:EditTourViewModel}"
         mc:Ignorable="d"
-        Title="Edit Tour" Height="450" Width="800">
+        Title="Edit Tour" MinWidth="650" MinHeight="450">
     <Grid Margin="20,30" Background="WhiteSmoke">
 
         <Grid.RowDefinitions>

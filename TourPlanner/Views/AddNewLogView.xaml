@@ -6,7 +6,7 @@
         xmlns:viewmodels="clr-namespace:TourPlanner.ViewModels" 
         d:DataContext="{d:DesignInstance Type=viewmodels:AddNewLogViewModel}"
         mc:Ignorable="d"
-        Title="AddNewLogView" Height="450" Width="650">
+        Title="AddNewLogView" MinWidth="650" MinHeight="450">
     <Grid Margin="10,10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>

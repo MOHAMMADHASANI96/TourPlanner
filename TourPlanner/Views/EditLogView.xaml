@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:TourPlanner.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:EditLogViewModel}"
         mc:Ignorable="d"
-        Title="Edit Log" Height="450" Width="800">
+        Title="Edit Log" MinWidth="500" MinHeight="450">
     <Grid Margin="10,10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>

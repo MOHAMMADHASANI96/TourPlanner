@@ -2,3 +2,16 @@
 10:49:32,699 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
 10:52:04,374 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
 10:53:23,112 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+10:22:05,342 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+10:22:07,165 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+10:22:59,389 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+10:22:59,548 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+10:23:03,185 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+10:23:03,204 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+10:23:04,341 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+10:23:04,347 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+10:23:05,541 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+10:23:05,545 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+10:23:42,507 [1] INFO  TourPlanner.ViewModels.EditLogViewModel | -Editing Tour DONE!
+10:23:43,749 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+10:24:58,787 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
