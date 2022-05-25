@@ -15,6 +15,8 @@ namespace TourPlanner.BusinessLayer
     internal class TourFactoryImpl : ITourFactory
     {
 
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         MapQuestApiProcessor mapQuestApiProcessor = new MapQuestApiProcessor();
 
         public string RoutPhotoFolder { get; set; }
@@ -161,8 +163,10 @@ namespace TourPlanner.BusinessLayer
                 document.GeneratePdf(pdfPath);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string strResponseValue = "{\"errorMessages\":[\"" + ex.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(strResponseValue, ex);
                 return false;
             }  
         }
@@ -191,8 +195,10 @@ namespace TourPlanner.BusinessLayer
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string strResponseValue = "{\"errorMessages\":[\"" + ex.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(strResponseValue, ex);
                 return false;
             }
         }
@@ -226,8 +232,10 @@ namespace TourPlanner.BusinessLayer
                 return true;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string strResponseValue = "{\"errorMessages\":[\"" + ex.Message.ToString() + "\"],\"errors\":{}}";
+                log.Error(strResponseValue, ex);
                 return false;
             }    
         }
