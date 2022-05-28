@@ -17,8 +17,11 @@ namespace TourPlanner.ViewModels
         private Window window;
 
         //command
-        private RelayCommand editLog;
+        private ICommand editLog;
+        private ICommand cancle;
+        
         public ICommand EditLog => editLog ??= new RelayCommand(PerformEditLog);
+        public ICommand Cancle => cancle ??= new RelayCommand(PerformCancle);
 
         public TourItem CurrentTour
         {
@@ -71,6 +74,14 @@ namespace TourPlanner.ViewModels
                 window = Application.Current.Windows[2];
                 window.Close();
             }
+        }
+
+
+
+        private void PerformCancle(object commandParameter)
+        {
+            var window = Application.Current.Windows[1];
+            window.Close();
         }
     }
 }

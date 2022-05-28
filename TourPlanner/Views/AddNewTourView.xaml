@@ -6,7 +6,7 @@
         xmlns:viewmodels="clr-namespace:TourPlanner.ViewModels" 
         d:DataContext="{d:DesignInstance Type=viewmodels:AddNewTourViewModel}"
         mc:Ignorable="d"
-        Title="Add New Tour" MinWidth="650" MinHeight="450">
+        Title="Add New Tour" Width="500" Height="450" MinWidth="500" MinHeight="450">
     <Grid Margin="20,30" Background="WhiteSmoke">
 
         <Grid.RowDefinitions>

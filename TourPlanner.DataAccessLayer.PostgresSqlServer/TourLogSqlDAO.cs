@@ -77,7 +77,7 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
            
         }
 
-        // get Log
+        // get Log ?????
         public IEnumerable<TourLog> GetLogItems(TourItem tourItem)
         {
             try

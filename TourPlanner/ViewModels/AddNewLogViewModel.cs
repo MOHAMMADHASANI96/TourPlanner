@@ -22,7 +22,10 @@ namespace TourPlanner.ViewModels
 
         //command
         private ICommand addLog;
+        private ICommand cancle;
+        
         public ICommand AddLog => addLog ??= new RelayCommand(PerformAddLog);
+        public ICommand Cancle => cancle ??= new RelayCommand(PerformCancle);
 
 
         public AddNewLogViewModel()
@@ -131,6 +134,13 @@ namespace TourPlanner.ViewModels
                 LogReport = string.Empty;
                 LogRating = string.Empty;
             }
+        }
+
+
+        private void PerformCancle(object commandParameter)
+        {
+            var window = Application.Current.Windows[1];
+            window.Close();
         }
     }
 }

@@ -331,13 +331,16 @@ namespace TourPlanner.ViewModels
         // add new Tour Log
         private void PerformAddNewLog(object commandParameter)
         {
-            this.addNewLogViewModel = new AddNewLogViewModel();
-            addNewLogViewModel.CurrentTour = CurrentItem;
-            AddNewLogView addLog = new AddNewLogView();
-            addLog.DataContext = this.addNewLogViewModel;
-            addLog.ShowDialog();
-            this.tourItemFactory = TourFactory.GetInstance();
-            FillLogBox(this.tourItemFactory.GetTourLog(currentItem));
+            if (CurrentItem != null)
+            {
+                this.addNewLogViewModel = new AddNewLogViewModel();
+                addNewLogViewModel.CurrentTour = CurrentItem;
+                AddNewLogView addLog = new AddNewLogView();
+                addLog.DataContext = this.addNewLogViewModel;
+                addLog.ShowDialog();
+                this.tourItemFactory = TourFactory.GetInstance();
+                FillLogBox(this.tourItemFactory.GetTourLog(currentItem));
+            }
         }
 
         // edit Tour Log
