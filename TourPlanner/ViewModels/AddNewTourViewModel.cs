@@ -74,6 +74,7 @@ namespace TourPlanner.ViewModels
                 TourFrom = string.Empty;
                 TourTo = string.Empty;
                 TourDescription = string.Empty;
+                TourTransportType = string.Empty;
                 TourDistance = string.Empty;
             }
             else
@@ -103,6 +104,7 @@ namespace TourPlanner.ViewModels
                 if ((tourName != value) && (value != null))
                 {
                     tourName = value;
+                    CheckTourName();
                     RaisePropertyChangedEvent(nameof(TourName));
                 }
             }
@@ -117,6 +119,7 @@ namespace TourPlanner.ViewModels
                 if ((tourFrom != value) && (value != null))
                 {
                     tourFrom = value;
+                    CheckTourFrom();
                     RaisePropertyChangedEvent(nameof(TourFrom));
                 }
             }
@@ -130,6 +133,7 @@ namespace TourPlanner.ViewModels
                 if ((tourTo != value) && (value != null))
                 {
                     tourTo = value;
+                    CheckTourTo();
                     RaisePropertyChangedEvent(nameof(TourTo));
                 }
             }
@@ -143,6 +147,7 @@ namespace TourPlanner.ViewModels
                 if ((tourDistance != value) && (value != null))
                 {
                     tourDistance = value;
+                    CheckTourDistance();
                     RaisePropertyChangedEvent(nameof(TourDistance));
                 }
             }
@@ -156,6 +161,7 @@ namespace TourPlanner.ViewModels
                 if ((tourTransportType != value) && (value != null))
                 {
                     tourTransportType = value;
+                    CheckTourTransportType();
                     RaisePropertyChangedEvent(nameof(TourTransportType));
                 }
             }
@@ -169,6 +175,7 @@ namespace TourPlanner.ViewModels
                 if ((tourDescription != value) && (value != null))
                 {
                     tourDescription = value;
+                    CheckTourDescription();
                     RaisePropertyChangedEvent(nameof(TourDescription));
                 }
             }
@@ -193,7 +200,13 @@ namespace TourPlanner.ViewModels
                 AddError(nameof(TourName), "Tour Name cannot be empty.");
                 return false;
             }
-            return true;
+            else if(this.tourFactory.FindTourItemByName(TourName) != null)
+            {
+                AddError(nameof(TourName), "This tour name has already been registered.Please define another Tour Name");
+                return false;
+            }
+            else
+                return true;
         }
 
         public bool CheckTourFrom()

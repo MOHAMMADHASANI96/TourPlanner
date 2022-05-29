@@ -287,13 +287,25 @@ namespace TourPlanner.ViewModels
                 currentTourImagePath = null;
                 RaisePropertyChangedEvent(nameof(CurrentTourImagePath));
                 this.editTourViewModel = new EditTourViewModel();
+                
+                // send currentTour information to EditTourViewModel
                 editTourViewModel.CurrentTour = CurrentItem;
+                editTourViewModel.TourFrom = CurrentItem.From;
+                editTourViewModel.TourTo = CurrentItem.To;
+                editTourViewModel.TourDistance = CurrentItem.Distance;
+                editTourViewModel.TourTransportType = CurrentItem.TransportTyp;
+                editTourViewModel.TourDescription = CurrentItem.Description;
+
                 EditTourView editTour = new EditTourView();
                 editTour.DataContext = this.editTourViewModel;
                 editTour.ShowDialog();
                 this.tourItemFactory = TourFactory.GetInstance();
                 IEnumerable<TourItem> result = this.tourItemFactory.GetItems();
                 FillListBox(result);
+            }
+            else
+            {
+                MessageBox.Show("No Tour selected for editing");
             }
         }
 
@@ -324,6 +336,10 @@ namespace TourPlanner.ViewModels
                     case MessageBoxResult.No:
                         break;
                 }
+            }
+            else
+            {
+                MessageBox.Show("No Tour selected for deleting");
             }
         }
 

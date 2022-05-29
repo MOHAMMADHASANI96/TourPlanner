@@ -99,6 +99,7 @@ namespace TourPlanner.ViewModels
             if (CurrentTour != null)
             {
                 Logs = this.tourFactory.GetTourLog(CurrentTour);
+                
                 // SaveFileDialog settings
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Title = "Save an PDF File";

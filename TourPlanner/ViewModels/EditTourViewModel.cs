@@ -1,4 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
 using TourPlanner.Models;
@@ -6,16 +11,31 @@ using TourPlanner.ViewModels.Abstract;
 
 namespace TourPlanner.ViewModels
 {
-    public class EditTourViewModel: BaseViewModel
+    public class EditTourViewModel: BaseViewModel, INotifyDataErrorInfo
     {
+
+        private string tourDescription;
+        private string tourFrom;
+        private string tourTo;
+        private string tourDistance;
+        private string tourTransportType;
+
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private TourItem currentTour;
         private ITourFactory tourFactory;
 
+        // for validation
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        private readonly Dictionary<string, List<string>> _errorsByPropertyName = new Dictionary<string, List<string>>();
+        public bool HasErrors => _errorsByPropertyName.Any();
+
         //command
         private ICommand editTour;
+        private ICommand cancle;
+
         public ICommand EditTour => editTour ??= new RelayCommand(PerformEditTour);
+        public ICommand Cancle => cancle ??= new RelayCommand(PerformCancle);
 
         public TourItem CurrentTour
         {
@@ -34,10 +54,15 @@ namespace TourPlanner.ViewModels
         {
             this.tourFactory = TourFactory.GetInstance();
         }
+        private void PerformCancle(object commandParameter)
+        {
+            var window = Application.Current.Windows[1];
+            window.Close();
+        }
 
         private void PerformEditTour(object commandParameter)
         {            
-            if (!string.IsNullOrEmpty(CurrentTour.Name) && !string.IsNullOrEmpty(CurrentTour.From) && !string.IsNullOrEmpty(CurrentTour.To) && !string.IsNullOrEmpty(CurrentTour.Description) && !string.IsNullOrEmpty(CurrentTour.TransportTyp))
+            if (!string.IsNullOrEmpty(CurrentTour.Name) && !string.IsNullOrEmpty(CurrentTour.From) && !string.IsNullOrEmpty(CurrentTour.To) && !string.IsNullOrEmpty(CurrentTour.Description) && !string.IsNullOrEmpty(CurrentTour.TransportTyp) && !string.IsNullOrEmpty(CurrentTour.Distance))
             {
                 int id = CurrentTour.TourId;
                 TourItem editTour = new TourItem(id, CurrentTour.Name, CurrentTour.Description, CurrentTour.From, CurrentTour.To, CurrentTour.Name, CurrentTour.Distance , CurrentTour.TransportTyp);
@@ -59,6 +84,176 @@ namespace TourPlanner.ViewModels
                 window.Close();
 
             }
+            else
+            {
+                CheckTourFrom();
+                CheckTourTo();
+                CheckTourDistance();
+                CheckTourTransportType();
+                CheckTourDescription();
+                //save to log file
+                log.Info("FAILED edit tour!");
+            }
         }
+
+
+        public string TourFrom
+        {
+            get { return tourFrom; }
+            set
+            {
+                if ((tourFrom != value) && (value != null))
+                {
+                    tourFrom = value;
+                    CheckTourFrom();
+                    RaisePropertyChangedEvent(nameof(TourFrom));
+                }
+            }
+        }
+
+        public string TourTo
+        {
+            get { return tourTo; }
+            set
+            {
+                if ((tourTo != value) && (value != null))
+                {
+                    tourTo = value;
+                    CheckTourTo();
+                    RaisePropertyChangedEvent(nameof(TourTo));
+                }
+            }
+        }
+
+        public string TourDistance
+        {
+            get { return tourDistance; }
+            set
+            {
+                if ((tourDistance != value) && (value != null))
+                {
+                    tourDistance = value;
+                    CheckTourDistance();
+                    RaisePropertyChangedEvent(nameof(TourDistance));
+                }
+            }
+        }
+
+        public string TourTransportType
+        {
+            get { return tourTransportType; }
+            set
+            {
+                if ((tourTransportType != value) && (value != null))
+                {
+                    tourTransportType = value;
+                    CheckTourTransportType();
+                    RaisePropertyChangedEvent(nameof(TourTransportType));
+                }
+            }
+        }
+
+        public string TourDescription
+        {
+            get { return tourDescription; }
+            set
+            {
+                if ((tourDescription != value) && (value != null))
+                {
+                    tourDescription = value;
+                    CheckTourDescription();
+                    RaisePropertyChangedEvent(nameof(TourDescription));
+                }
+            }
+        }
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            return _errorsByPropertyName.ContainsKey(propertyName) ?
+            _errorsByPropertyName[propertyName] : null;
+        }
+
+        private void OnErrorsChanged(string propertyName)
+        {
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
+
+
+        public bool CheckTourFrom()
+        {
+            ClearErrors(nameof(TourFrom));
+            if (string.IsNullOrWhiteSpace(TourFrom))
+            {
+                AddError(nameof(TourFrom), "Origin can not be empty");
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckTourTo()
+        {
+            ClearErrors(nameof(TourTo));
+            if (string.IsNullOrWhiteSpace(TourTo))
+            {
+                AddError(nameof(TourTo), "Destination can not be empty");
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckTourDistance()
+        {
+            ClearErrors(nameof(TourDistance));
+            if (string.IsNullOrWhiteSpace(TourDistance))
+            {
+                AddError(nameof(TourDistance), "Distance can not be empty");
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckTourTransportType()
+        {
+            ClearErrors(nameof(TourTransportType));
+            if (string.IsNullOrWhiteSpace(TourTransportType))
+            {
+                AddError(nameof(TourTransportType), "Transport Type cannot be empty.");
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckTourDescription()
+        {
+            ClearErrors(nameof(TourDescription));
+            if (string.IsNullOrWhiteSpace(TourDescription))
+            {
+                AddError(nameof(TourDescription), "Description cannot be empty.");
+                return false;
+            }
+            return true;
+        }
+
+        private void AddError(string propertyName, string error)
+        {
+            if (!_errorsByPropertyName.ContainsKey(propertyName))
+                _errorsByPropertyName[propertyName] = new List<string>();
+
+            if (!_errorsByPropertyName[propertyName].Contains(error))
+            {
+                _errorsByPropertyName[propertyName].Add(error);
+                OnErrorsChanged(propertyName);
+            }
+        }
+
+        private void ClearErrors(string propertyName)
+        {
+            if (_errorsByPropertyName.ContainsKey(propertyName))
+            {
+                _errorsByPropertyName.Remove(propertyName);
+                OnErrorsChanged(propertyName);
+            }
+        }
+
     }
 }

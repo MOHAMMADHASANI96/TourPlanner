@@ -6,7 +6,7 @@
         xmlns:viewmodels="clr-namespace:TourPlanner.ViewModels" 
         d:DataContext="{d:DesignInstance Type=viewmodels:AddNewTourViewModel}"
         mc:Ignorable="d"
-        Title="Add New Tour" Width="500" Height="450" MinWidth="500" MinHeight="450">
+        Title="Add New Tour" Width="500" Height="450" MinWidth="550" MinHeight="450">
     <Window.Resources>
         <Style x:Key="DefaultTextBoxStyle" TargetType="TextBox">
             <Setter Property="Margin" Value="0,5,0,5" />
@@ -61,6 +61,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Name:</Label>
@@ -76,7 +77,8 @@
             <TextBox Grid.Row="3" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding TourDistance, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Style="{StaticResource CustomErrorControlOnErrorStyle}"/>
             <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Transport Typ:</Label>
-            <ComboBox  Width="300" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding TourTransportType, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+            <ComboBox  Width="300" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding TourTransportType, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                        Style="{StaticResource CustomErrorControlOnErrorStyleComboBox}">
                 <ComboBoxItem>Bus</ComboBoxItem>
                 <ComboBoxItem>Airplain</ComboBoxItem>
                 <ComboBoxItem>Car</ComboBoxItem>
