@@ -6,7 +6,7 @@
         xmlns:viewmodels="clr-namespace:TourPlanner.ViewModels" 
         d:DataContext="{d:DesignInstance Type=viewmodels:AddNewTourViewModel}"
         mc:Ignorable="d"
-        Title="Add New Tour" Width="500" Height="450" MinWidth="550" MinHeight="450">
+        Title="Add New Tour" Width="550" Height="450" MinWidth="550" MinHeight="450">
     <Window.Resources>
         <Style x:Key="DefaultTextBoxStyle" TargetType="TextBox">
             <Setter Property="Margin" Value="0,5,0,5" />

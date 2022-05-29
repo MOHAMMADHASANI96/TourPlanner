@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
@@ -7,7 +11,7 @@ using TourPlanner.ViewModels.Abstract;
 
 namespace TourPlanner.ViewModels
 {
-    public class AddNewLogViewModel : BaseViewModel
+    public class AddNewLogViewModel : BaseViewModel, INotifyDataErrorInfo
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -16,6 +20,11 @@ namespace TourPlanner.ViewModels
         private TimeSpan logTotalTime;
         private string logReport;
         private string logRating;
+
+        // for validation
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        private readonly Dictionary<string, List<string>> _errorsByPropertyName = new Dictionary<string, List<string>>();
+        public bool HasErrors => _errorsByPropertyName.Any();
 
         private TourItem currentTour;
         private ITourFactory tourFactory;
@@ -52,9 +61,10 @@ namespace TourPlanner.ViewModels
             get { return logDate; }
             set
             {
-                if ((logDate != value))
+                if ((logDate != DateTime.MinValue))
                 {
                     logDate = value;
+                    CheckLogDate();
                     RaisePropertyChangedEvent(nameof(LogDate));
                 }
             }
@@ -68,6 +78,7 @@ namespace TourPlanner.ViewModels
                 if ((logDifficulty != value) && (value != null))
                 {
                     logDifficulty = value;
+                    CheckLogDifficulty();
                     RaisePropertyChangedEvent(nameof(LogDifficulty));
                 }
             }
@@ -81,6 +92,7 @@ namespace TourPlanner.ViewModels
                 if ((logTotalTime != value))
                 {
                     logTotalTime = value;
+                    CheckLogTotalTime();
                     RaisePropertyChangedEvent(nameof(LogTotalTime));
                 }
             }
@@ -94,6 +106,7 @@ namespace TourPlanner.ViewModels
                 if ((logReport != value) && (value != null))
                 {
                     logReport = value;
+                    CheckLogReport();
                     RaisePropertyChangedEvent(nameof(LogReport));
                 }
             }
@@ -107,6 +120,7 @@ namespace TourPlanner.ViewModels
                 if ((logRating != value) && (value != null))
                 {
                     logRating = value;
+                    CheckLogRating();
                     RaisePropertyChangedEvent(nameof(LogRating));
                 }
             }
@@ -131,8 +145,17 @@ namespace TourPlanner.ViewModels
                 //empty filed 
                 LogDate = DateTime.MinValue;
                 LogDifficulty = string.Empty;
+                LogTotalTime = TimeSpan.Zero;
                 LogReport = string.Empty;
                 LogRating = string.Empty;
+            }
+            else
+            {
+                CheckLogDate();
+                CheckLogDifficulty();
+                CheckLogTotalTime();
+                CheckLogReport();
+                CheckLogRating();
             }
         }
 
@@ -141,6 +164,93 @@ namespace TourPlanner.ViewModels
         {
             var window = Application.Current.Windows[1];
             window.Close();
+        }
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            return _errorsByPropertyName.ContainsKey(propertyName) ?
+            _errorsByPropertyName[propertyName] : null;
+        }
+
+        private void OnErrorsChanged(string propertyName)
+        {
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
+
+        public bool CheckLogDate()
+        {
+            ClearErrors(nameof(LogDate));
+            if (LogDate == DateTime.MinValue)
+            {
+                AddError(nameof(LogDate), "Date cannot be empty.");
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckLogDifficulty()
+        {
+            ClearErrors(nameof(LogDifficulty));
+            if (string.IsNullOrWhiteSpace(LogDifficulty))
+            {
+                AddError(nameof(LogDifficulty), "Difficulty can not be empty");
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckLogTotalTime()
+        {
+            ClearErrors(nameof(LogTotalTime));
+            if (logTotalTime == TimeSpan.Zero)
+            {
+                AddError(nameof(LogTotalTime), "TotalTime cannot be Ziro.");
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckLogReport()
+        {
+            ClearErrors(nameof(LogReport));
+            if (string.IsNullOrWhiteSpace(LogReport))
+            {
+                AddError(nameof(LogReport), "Report can not be empty");
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckLogRating()
+        {
+            ClearErrors(nameof(LogRating));
+            if (string.IsNullOrWhiteSpace(LogRating))
+            {
+                AddError(nameof(LogRating), "Rating can not be empty");
+                return false;
+            }
+            return true;
+        }
+
+        private void AddError(string propertyName, string error)
+        {
+            if (!_errorsByPropertyName.ContainsKey(propertyName))
+                _errorsByPropertyName[propertyName] = new List<string>();
+
+            if (!_errorsByPropertyName[propertyName].Contains(error))
+            {
+                _errorsByPropertyName[propertyName].Add(error);
+                OnErrorsChanged(propertyName);
+            }
+        }
+
+        private void ClearErrors(string propertyName)
+        {
+            if (_errorsByPropertyName.ContainsKey(propertyName))
+            {
+                _errorsByPropertyName.Remove(propertyName);
+                OnErrorsChanged(propertyName);
+            }
         }
     }
 }

@@ -356,6 +356,10 @@ namespace TourPlanner.ViewModels
                 this.tourItemFactory = TourFactory.GetInstance();
                 FillLogBox(this.tourItemFactory.GetTourLog(currentItem));
             }
+            else
+            {
+                MessageBox.Show("No Tour selected for adding Log");
+            }
         }
 
         // edit Tour Log
@@ -370,6 +374,10 @@ namespace TourPlanner.ViewModels
                 editLog.ShowDialog();
                 this.tourItemFactory = TourFactory.GetInstance();
                 FillLogBox(this.tourItemFactory.GetTourLog(currentItem));
+            }
+            else
+            {
+                MessageBox.Show("No Tour selected for editing Log");
             }
         }
 
@@ -392,6 +400,10 @@ namespace TourPlanner.ViewModels
                     case MessageBoxResult.No:
                         break;
                 }
+            }
+            else
+            {
+                MessageBox.Show("No Log selected for editing");
             }
         }
     }
