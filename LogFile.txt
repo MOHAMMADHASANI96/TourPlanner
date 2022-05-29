@@ -79,3 +79,114 @@
 17:50:37,942 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
 17:50:38,394 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
 17:50:38,397 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+17:52:18,001 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+17:52:18,846 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:06:36,903 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+19:06:37,635 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:06:42,821 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:06:45,177 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:06:46,064 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:06:46,235 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:06:46,420 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:06:46,589 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:06:50,488 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:09:39,714 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+19:09:41,155 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:09:45,540 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:09:45,865 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:09:46,054 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:09:48,929 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:18:33,847 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+19:18:34,674 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:18:39,387 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:18:42,800 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:18:43,064 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:18:43,260 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:18:43,460 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:18:47,419 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:21:44,451 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+19:21:45,768 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:36:40,516 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+19:36:41,652 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:36:45,676 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:37:00,313 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:38:44,534 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+19:38:45,283 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:38:49,640 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:38:49,961 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:38:50,147 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:38:50,320 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:38:50,487 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:38:56,510 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:39:01,808 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+19:39:01,848 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+19:39:06,596 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+19:41:50,664 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+19:41:51,369 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+19:41:55,085 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:42:08,006 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+19:42:17,249 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:05:39,683 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+20:05:41,019 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:05:47,327 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:08:34,305 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+20:08:35,413 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:08:39,386 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:08:54,339 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:21:29,273 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+20:21:30,840 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:21:47,675 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:23:28,171 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+20:23:29,172 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:23:50,000 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:27:21,525 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+20:27:22,255 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:27:53,652 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:35:32,920 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+20:35:33,882 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:35:45,859 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:39:24,933 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+20:39:25,663 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:39:31,974 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:39:39,617 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:39:50,164 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:50:43,583 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+20:50:44,460 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:50:46,287 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+20:50:46,333 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+20:50:51,958 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:50:52,812 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:50:53,024 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:50:53,250 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:51:13,845 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+20:51:14,553 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:51:18,101 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:51:18,615 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:51:18,806 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:51:18,988 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:51:19,821 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:55:33,217 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+20:55:34,232 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:55:39,435 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:55:39,961 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:55:40,175 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:55:40,352 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:55:40,533 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+20:55:43,113 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:55:54,430 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+20:55:55,652 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+20:56:00,065 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+21:51:45,986 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+21:51:47,212 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+21:51:53,298 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+22:04:13,483 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+22:04:14,331 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+22:08:13,477 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+22:08:14,514 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+22:08:18,031 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+22:08:32,181 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+22:08:44,736 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+22:08:49,638 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+22:09:32,830 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+22:09:33,596 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+22:09:38,715 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
