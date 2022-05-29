@@ -23,7 +23,7 @@ namespace TourPlanner.BusinessLayer
         // Create
         TourItem CreateTourItem(TourItem tourItem);
         TourLog CreateTourLog(TourLog tourLog);
-        bool PdfGenerate(TourItem tourItem, IEnumerable<TourLog> TourLog);
+        bool PdfGenerate(TourItem tourItem, IEnumerable<TourLog> TourLog, string path);
         bool ExportGenerate(List<Export> exportObjects);
         bool ImportFile(string filePath);
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
@@ -98,22 +99,36 @@ namespace TourPlanner.ViewModels
             if (CurrentTour != null)
             {
                 Logs = this.tourFactory.GetTourLog(CurrentTour);
-                if (this.tourFactory.PdfGenerate(CurrentTour, Logs))
+                // SaveFileDialog settings
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Title = "Save an PDF File";
+                saveFileDialog.InitialDirectory = @"D:\informatik\SS2022\SWE2\TourPlanner\RoutePDF";
+                saveFileDialog.DefaultExt = "pdf";
+                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+                saveFileDialog.FilterIndex = 2;
+                saveFileDialog.RestoreDirectory = true;
+
+
+                if (saveFileDialog.ShowDialog() == true)
                 {
-                    MessageBox.Show("PDF File created");
-                    
-                    //save to log file
-                    log.Info("Creating PDF File DONE!");
+
+                    if (this.tourFactory.PdfGenerate(CurrentTour, Logs , saveFileDialog.FileName))
+                    {
+                        MessageBox.Show("PDF File created");
+
+                        //save to log file
+                        log.Info("Creating PDF File DONE!");
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("PDF File doese not created");
+
+                        //save to log file
+                        log.Info("FAILED Creating PDF File!");
+                    }
+
                 }
-                    
-                else
-                {
-                    MessageBox.Show("PDF File doese not created");
-                    
-                    //save to log file
-                    log.Info("FAILED Creating PDF File!");
-                }
-                    
             }
         }
 

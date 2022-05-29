@@ -143,24 +143,16 @@ namespace TourPlanner.BusinessLayer
             tourLogDAO.DeleteTourLog(tourLog);
         }
 
-        //Get Pdf file path
-        public string GetPdfFilePath(string tourName)
-        {
-            string pdfPath = RoutPDFFolder + "\\" + tourName + ".pdf";
-            return pdfPath;
-        }
-
         //create pdf file
-        public bool PdfGenerate(TourItem tourItem, IEnumerable<TourLog> TourLog)
+        public bool PdfGenerate(TourItem tourItem, IEnumerable<TourLog> TourLog, string path)
         {
             try
             {
-                string pdfPath = GetPdfFilePath(tourItem.Name);
 
                 PdfDataSource pdfDataSource = new PdfDataSource();
                 PdfQuest model = pdfDataSource.GetDetials(tourItem, TourLog);
                 var document = new ReportTemplate(model);
-                document.GeneratePdf(pdfPath);
+                document.GeneratePdf(path);
                 return true;
             }
             catch (Exception ex)
