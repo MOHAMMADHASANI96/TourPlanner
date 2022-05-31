@@ -23,7 +23,7 @@ namespace TourPlanner.ViewModels
 
         // for validation
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-        private readonly Dictionary<string, List<string>> _errorsByPropertyName = new Dictionary<string, List<string>>();
+        public readonly Dictionary<string, List<string>> _errorsByPropertyName = new Dictionary<string, List<string>>();
         public bool HasErrors => _errorsByPropertyName.Any();
 
         private TourItem currentTour;
@@ -193,7 +193,7 @@ namespace TourPlanner.ViewModels
             ClearErrors(nameof(LogDifficulty));
             if (string.IsNullOrWhiteSpace(LogDifficulty))
             {
-                AddError(nameof(LogDifficulty), "Difficulty can not be empty");
+                AddError(nameof(LogDifficulty), "Difficulty can not be empty.");
                 return false;
             }
             return true;
@@ -215,7 +215,7 @@ namespace TourPlanner.ViewModels
             ClearErrors(nameof(LogReport));
             if (string.IsNullOrWhiteSpace(LogReport))
             {
-                AddError(nameof(LogReport), "Report can not be empty");
+                AddError(nameof(LogReport), "Report can not be empty.");
                 return false;
             }
             return true;
@@ -226,7 +226,7 @@ namespace TourPlanner.ViewModels
             ClearErrors(nameof(LogRating));
             if (string.IsNullOrWhiteSpace(LogRating))
             {
-                AddError(nameof(LogRating), "Rating can not be empty");
+                AddError(nameof(LogRating), "Rating can not be empty.");
                 return false;
             }
             return true;

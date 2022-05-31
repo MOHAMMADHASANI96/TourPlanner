@@ -22,6 +22,8 @@ namespace TourPlanner.BusinessLayer
         public string RoutPhotoFolder { get; set; }
         public string RoutPDFFolder { get; set; }
         public string RoutExportFolder { get; set; }
+        //public ITourItemDAO tourDAO { get; set; }
+        //public ITourLogDAO logDAO { get; set; }
 
 
         public TourFactoryImpl()
@@ -30,6 +32,24 @@ namespace TourPlanner.BusinessLayer
             RoutPDFFolder = ConfigurationManager.AppSettings["RoutPDFFolder"];
             RoutExportFolder = ConfigurationManager.AppSettings["RoutExportFolder"];
         }
+
+        ////for testing
+        //public TourFactoryImpl(ITourItemDAO tourItemDAO)
+        //{
+        //    RoutPhotoFolder = ConfigurationManager.AppSettings["RoutPhotoFolder"];
+        //    RoutPDFFolder = ConfigurationManager.AppSettings["RoutPDFFolder"];
+        //    RoutExportFolder = ConfigurationManager.AppSettings["RoutExportFolder"];
+        //    this.tourDAO = tourItemDAO;
+        //}
+        ////for testing
+        //public TourFactoryImpl(ITourLogDAO tourLogDAO)
+        //{
+        //    RoutPhotoFolder = ConfigurationManager.AppSettings["RoutPhotoFolder"];
+        //    RoutPDFFolder = ConfigurationManager.AppSettings["RoutPDFFolder"];
+        //    RoutExportFolder = ConfigurationManager.AppSettings["RoutExportFolder"];
+        //    this.logDAO = tourLogDAO;
+        //}
+
 
         //Get Tour Item 
         public IEnumerable<TourItem> GetItems()

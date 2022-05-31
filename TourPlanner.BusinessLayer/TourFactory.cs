@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TourPlanner.DataAccessLayer.DAO;
+using TourPlanner.Models;
 
 namespace TourPlanner.BusinessLayer
 {
@@ -16,5 +18,17 @@ namespace TourPlanner.BusinessLayer
                 instance = new TourFactoryImpl();
             return instance;
         }
+
+        //public static ITourFactory GetInstance(ITourItemDAO tourItemDAO)
+        //{
+        //    instance = new TourFactoryImpl(tourItemDAO);
+        //    return instance;
+        //}
+        //public static ITourFactory GetInstance(ITourLogDAO tourLogDAO)
+        //{
+        //    instance = new TourFactoryImpl(tourLogDAO);
+        //    return instance;
+        //}
+
     }
 }

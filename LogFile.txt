@@ -546,3 +546,19 @@ System.InvalidCastException: Unable to cast object of type 'System.DateTime' to 
 22:09:31,288 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
 22:09:31,298 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
 22:09:39,025 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+17:09:36,716 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+17:09:38,184 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+17:32:35,717 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+17:32:36,734 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+18:14:51,657 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+18:14:52,659 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+18:15:12,606 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+18:15:13,627 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+18:21:21,407 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+18:21:22,206 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+18:21:24,160 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+18:21:24,229 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+10:34:13,416 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+10:34:15,961 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+18:52:51,978 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+18:52:53,197 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!

@@ -7,7 +7,7 @@ namespace TourPlanner.DataAccessLayer.Common
 {
     public class DALFactory
     {
-        private static string assemblyName;
+        private static string assemblyName { get; set; }
         private static Assembly dalAssembly;
         private static IDatabase database;
 
@@ -18,6 +18,7 @@ namespace TourPlanner.DataAccessLayer.Common
             dalAssembly = Assembly.Load(assemblyName);
         }
 
+        
         // create database object with connection string from config
         public static IDatabase GetDatabase()
         {
