@@ -15,7 +15,7 @@ namespace TourPlanner.Test
     public class TourViewModelTest
     {
 
-        AddNewLogViewModel logAddViewModel = new AddNewLogViewModel();
+       
         //[Test]
         //public void TestInitlistView()
         //{
@@ -32,12 +32,5 @@ namespace TourPlanner.Test
         //    Assert.AreEqual(tours.Count(), 1);
         //}
 
-        [Test, Order(3)]
-        public void ValidateReportTestNull()
-        {
-            logAddViewModel.LogReport = null;
-            logAddViewModel.CheckLogReport();
-            Assert.AreEqual("Report can not be empty.", logAddViewModel._errorsByPropertyName["LogReport"][0]);
-        }
     }
 }

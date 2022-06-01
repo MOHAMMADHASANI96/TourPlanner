@@ -10,7 +10,6 @@ using TourPlanner.ViewModels;
 
 namespace TourPlanner.Test
 {
-    [TestFixture]
     public class TourFactoryImplTest
     {
         //[Test]
@@ -20,20 +19,20 @@ namespace TourPlanner.Test
         //    Assert.AreEqual(value, "gbxoMANTCgZCQPPwmBdaCcXtkpX6KAfJ");
         //    //Assert.IsFalse(String.IsNullOrEmpty(value), "No App.Config found.");
         //}
-        [Test]
-        public void TestTourCreation()
-        {
-            var tourItemDao_mock = new Mock<ITourItemDAO>();
-            TourItem tourItem = new TourItem(1, "Tour", "Test1", "Linz", "Wien", "Image1", "1000", "Car");
-            tourItemDao_mock.Setup(mock => mock.AddNewTourItem(tourItem)).Returns(tourItem);
+        //[Test]
+        //public void TestTourCreation()
+        //{
+        //    var tourItemDao_mock = new Mock<ITourItemDAO>();
+        //    TourItem tourItem = new TourItem(1, "Tour", "Test1", "Linz", "Wien", "Image1", "1000", "Car");
+        //    tourItemDao_mock.Setup(mock => mock.AddNewTourItem(tourItem)).Returns(tourItem);
 
 
-            ITourFactory tourFactory = TourFactory.GetInstance();
-            TourItem tourItem1 = new TourItem(1, "Tour", "Test1", "Linz", "Wien", "Image1", "1000", "Car");
-            TourItem newTourItem = tourFactory.CreateTourItem(tourItem1);
+        //    ITourFactory tourFactory = TourFactory.GetInstance();
+        //    TourItem tourItem1 = new TourItem(1, "Tour", "Test1", "Linz", "Wien", "Image1", "1000", "Car");
+        //    TourItem newTourItem = tourFactory.CreateTourItem(tourItem1);
 
-            Assert.AreEqual(newTourItem, tourItem);
-        }
+        //    Assert.AreEqual(newTourItem, tourItem);
+        //}
 
         //[Test]
         //public void TestData_ShouldContainInitialList()

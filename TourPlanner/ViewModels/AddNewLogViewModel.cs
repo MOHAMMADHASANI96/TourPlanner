@@ -218,6 +218,11 @@ namespace TourPlanner.ViewModels
                 AddError(nameof(LogReport), "Report can not be empty.");
                 return false;
             }
+            if (LogReport.Length > 50)
+            {
+                AddError(nameof(LogReport), "Report has to be lower than 50 characters.");
+                return false;
+            }
             return true;
         }
 
@@ -229,6 +234,7 @@ namespace TourPlanner.ViewModels
                 AddError(nameof(LogRating), "Rating can not be empty.");
                 return false;
             }
+
             return true;
         }
 

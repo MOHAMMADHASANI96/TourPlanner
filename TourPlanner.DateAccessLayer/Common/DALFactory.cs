@@ -7,7 +7,7 @@ namespace TourPlanner.DataAccessLayer.Common
 {
     public class DALFactory
     {
-        private static string assemblyName { get; set; }
+        private static string assemblyName;
         private static Assembly dalAssembly;
         private static IDatabase database;
 
@@ -46,6 +46,7 @@ namespace TourPlanner.DataAccessLayer.Common
         // create Item tour sql/file DAO object
         public static ITourItemDAO CreateTourItemDAO()
         {
+
             string className = assemblyName + ".TourItemSqlDAO";
             Type tourItemType = dalAssembly.GetType(className);
             return Activator.CreateInstance(tourItemType) as ITourItemDAO;

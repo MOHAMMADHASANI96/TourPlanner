@@ -562,3 +562,21 @@ System.InvalidCastException: Unable to cast object of type 'System.DateTime' to 
 10:34:15,961 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
 18:52:51,978 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
 18:52:53,197 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+21:24:49,566 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+21:24:53,387 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+11:27:32,694 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+11:27:36,636 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+11:27:39,618 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+11:27:39,711 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+11:28:49,555 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+11:31:43,537 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+11:31:44,397 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+11:31:50,649 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+11:31:55,621 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+11:31:56,348 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+11:31:56,542 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+11:31:56,711 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+11:32:02,103 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -FAILED to add a new tour!
+11:33:11,950 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+11:39:00,972 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+11:39:01,989 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!

@@ -233,11 +233,27 @@ namespace TourPlanner.ViewModels
 
         public bool CheckTourDistance()
         {
+            bool res;
+            float distance;
+            res = float.TryParse(TourDistance, out distance);
             ClearErrors(nameof(TourDistance));
             if (string.IsNullOrWhiteSpace(TourDistance))
             {
                 AddError(nameof(TourDistance), "Distance can not be empty");
                 return false;
+            }
+            if (!res)
+            {
+                AddError(nameof(TourDistance), "Distance has to be a float.");
+                return false;
+            }
+            else
+            {
+                if ((distance < 1) || (distance > 10000))
+                {
+                    AddError(nameof(TourDistance), "Distance has to be between 1 and 10000 km.");
+                    return false;
+                }
             }
             return true;
         }
