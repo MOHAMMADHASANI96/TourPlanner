@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer;
@@ -15,9 +16,9 @@ namespace TourPlanner.ViewModels
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private DateTime logDate;
+        private string logDate;
         private string logDifficulty;
-        private TimeSpan logTotalTime;
+        private string logTotalTime;
         private string logReport;
         private string logRating;
 
@@ -32,7 +33,8 @@ namespace TourPlanner.ViewModels
         //command
         private ICommand addLog;
         private ICommand cancle;
-        
+        private Window window;
+
         public ICommand AddLog => addLog ??= new RelayCommand(PerformAddLog);
         public ICommand Cancle => cancle ??= new RelayCommand(PerformCancle);
 
@@ -56,12 +58,12 @@ namespace TourPlanner.ViewModels
         }
 
 
-        public DateTime LogDate
+        public string LogDate
         {
             get { return logDate; }
             set
             {
-                if ((logDate != DateTime.MinValue))
+                if ((logDate !=value) && (value !=null))
                 {
                     logDate = value;
                     CheckLogDate();
@@ -84,12 +86,12 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public TimeSpan LogTotalTime
+        public string LogTotalTime
         {
             get { return logTotalTime; }
             set
             {
-                if ((logTotalTime != value))
+                if ((logTotalTime != value)  && (value !=null))
                 {
                     logTotalTime = value;
                     CheckLogTotalTime();
@@ -129,7 +131,7 @@ namespace TourPlanner.ViewModels
 
         private void PerformAddLog(object commandParameter)
         {
-            if (!string.IsNullOrEmpty(LogDifficulty) && !string.IsNullOrEmpty(LogReport) && !string.IsNullOrEmpty(LogRating))
+            if (!string.IsNullOrEmpty(LogDate) && !string.IsNullOrEmpty(LogDifficulty) && !string.IsNullOrEmpty(LogReport) && !string.IsNullOrEmpty(LogRating) && !string.IsNullOrEmpty(LogTotalTime))
             {
                 TourLog newLog = new TourLog(0, logDate, logReport,logDifficulty,logTotalTime,logRating,currentTour);
 
@@ -141,13 +143,10 @@ namespace TourPlanner.ViewModels
 
                 //Show Successfully Message 
                 MessageBox.Show("New TourLog Successfully added.");
-                
-                //empty filed 
-                LogDate = DateTime.MinValue;
-                LogDifficulty = string.Empty;
-                LogTotalTime = TimeSpan.Zero;
-                LogReport = string.Empty;
-                LogRating = string.Empty;
+
+                //Close Window
+                window = Application.Current.Windows[2];
+                window.Close();
             }
             else
             {
@@ -179,10 +178,17 @@ namespace TourPlanner.ViewModels
 
         public bool CheckLogDate()
         {
+            Regex regex = new Regex(@"(([0]?[1-9]|1[0-2])\/([0]?[1-9]|1[0-9]|2[0-9]|3[0-1])\/((19|20)\d\d))$");
             ClearErrors(nameof(LogDate));
-            if (LogDate == DateTime.MinValue)
+            
+            if (string.IsNullOrEmpty(LogDate))
             {
                 AddError(nameof(LogDate), "Date cannot be empty.");
+                return false;
+            }
+            if (!regex.IsMatch(LogDate))
+            {
+                AddError(nameof(LogDate), "Date Time Format must be MM/DD/YYYY.");
                 return false;
             }
             return true;
@@ -191,7 +197,7 @@ namespace TourPlanner.ViewModels
         public bool CheckLogDifficulty()
         {
             ClearErrors(nameof(LogDifficulty));
-            if (string.IsNullOrWhiteSpace(LogDifficulty))
+            if (string.IsNullOrEmpty(LogDifficulty))
             {
                 AddError(nameof(LogDifficulty), "Difficulty can not be empty.");
                 return false;
@@ -201,19 +207,27 @@ namespace TourPlanner.ViewModels
 
         public bool CheckLogTotalTime()
         {
+            Regex regex = new Regex(@"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$");
             ClearErrors(nameof(LogTotalTime));
-            if (logTotalTime == TimeSpan.Zero)
+            if (string.IsNullOrEmpty(LogTotalTime))
             {
-                AddError(nameof(LogTotalTime), "TotalTime cannot be Ziro.");
+                AddError(nameof(LogTotalTime), "Total Time cannot be empty.");
                 return false;
             }
+
+            if (!regex.IsMatch(LogTotalTime) && !string.IsNullOrEmpty(LogTotalTime))
+            {
+                AddError(nameof(LogTotalTime), "Total Time Format must be HH:MM:SS.");
+                return false;
+            }
+           
             return true;
         }
 
         public bool CheckLogReport()
         {
             ClearErrors(nameof(LogReport));
-            if (string.IsNullOrWhiteSpace(LogReport))
+            if (string.IsNullOrEmpty(LogReport))
             {
                 AddError(nameof(LogReport), "Report can not be empty.");
                 return false;
@@ -229,7 +243,7 @@ namespace TourPlanner.ViewModels
         public bool CheckLogRating()
         {
             ClearErrors(nameof(LogRating));
-            if (string.IsNullOrWhiteSpace(LogRating))
+            if (string.IsNullOrEmpty(LogRating))
             {
                 AddError(nameof(LogRating), "Rating can not be empty.");
                 return false;

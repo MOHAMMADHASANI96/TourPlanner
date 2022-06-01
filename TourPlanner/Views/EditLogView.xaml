@@ -6,6 +6,59 @@
         xmlns:viewmodels="clr-namespace:TourPlanner.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:EditLogViewModel}"
         mc:Ignorable="d"
         Title="Edit Log" Width="500" Height="450" MinWidth="500" MinHeight="450">
+    <Window.Resources>
+        <Style x:Key="DefaultTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="0,5,0,5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="DefaultComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Margin" Value="0,5,0,5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="DefaultDatePickerStyle" TargetType="DatePicker">
+            <Setter Property="Margin" Value="0,5,0,5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="CustomErrorControlOnErrorStyle" TargetType="TextBox" BasedOn="{StaticResource DefaultTextBoxStyle}">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="placeholder" />
+                            <TextBlock FontSize="11" FontStyle="Italic" Foreground="Red"
+                                       Text="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.Errors)/ErrorContent}" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CustomErrorControlOnErrorStyleComboBox" TargetType="ComboBox" BasedOn="{StaticResource DefaultComboBoxStyle}">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="placeholder" />
+                            <TextBlock FontSize="11" FontStyle="Italic" Foreground="Red"
+                                       Text="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.Errors)/ErrorContent}" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CustomErrorControlOnErrorStyleDatePicker" TargetType="DatePicker" BasedOn="{StaticResource DefaultDatePickerStyle}">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="placeholder" />
+                            <TextBlock FontSize="11" FontStyle="Italic" Foreground="Red"
+                                       Text="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.Errors)/ErrorContent}" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Margin="20,30" Background="WhiteSmoke">
 
         <Grid.RowDefinitions>
@@ -28,13 +81,17 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Date:</Label>
-            <DatePicker Grid.Row="0" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding LogDate}" ></DatePicker>
+            <DatePicker Grid.Row="0" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding LogDate , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                Style="{StaticResource CustomErrorControlOnErrorStyleDatePicker}"/>
             <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Total time:</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding LogTotalTime}"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding LogTotalTime , UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                      Style="{StaticResource CustomErrorControlOnErrorStyle}" />
             <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Report:</Label>
-            <TextBox Grid.Row="2" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding LogReport}"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding LogReport , UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                      Style="{StaticResource CustomErrorControlOnErrorStyle}" />
             <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Difficulty:</Label>
-            <ComboBox  Width="300" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding LogDifficulty}">
+            <ComboBox  Width="300" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding LogDifficulty , UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                        Style="{StaticResource CustomErrorControlOnErrorStyleComboBox}">
                 <ComboBoxItem>Very hard</ComboBoxItem>
                 <ComboBoxItem>Hard</ComboBoxItem>
                 <ComboBoxItem>Moderate</ComboBoxItem>
@@ -42,7 +99,8 @@
                 <ComboBoxItem>Very Easy</ComboBoxItem>
             </ComboBox>
             <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Rating:</Label>
-            <ComboBox  Width="300" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding LogRating}">
+            <ComboBox  Width="300" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Text="{Binding LogRating , UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                        Style="{StaticResource CustomErrorControlOnErrorStyleComboBox}">
                 <ComboBoxItem>*</ComboBoxItem>
                 <ComboBoxItem>**</ComboBoxItem>
                 <ComboBoxItem>***</ComboBoxItem>

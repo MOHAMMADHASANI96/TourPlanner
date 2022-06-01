@@ -83,7 +83,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Date:</Label>
-            <DatePicker SelectedDate="{x:Static sys:DateTime.Now}" Grid.Row="0" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding LogDate , UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" 
+            <DatePicker SelectedDate="{x:Static sys:DateTime.Now}" Grid.Row="0" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding LogDate , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" 
                         Style="{StaticResource CustomErrorControlOnErrorStyleDatePicker}"/>
             <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Width="100" Margin="5">Total time:</Label>
             <TextBox Grid.Row="1" Grid.Column="1" Width="300" HorizontalAlignment="Left" Margin="5" Text="{Binding LogTotalTime , UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"

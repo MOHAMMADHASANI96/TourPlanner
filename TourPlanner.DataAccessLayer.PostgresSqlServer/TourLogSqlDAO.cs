@@ -41,10 +41,10 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
             try
             {
                 DbCommand insertCommand = database.CreateCommand(SQL_INSERT_NEW_LOG);
-                database.DefineParameter(insertCommand, "@DateTime", DbType.Date, tourLog.DateTime);
+                database.DefineParameter(insertCommand, "@DateTime", DbType.String, tourLog.DateTime);
                 database.DefineParameter(insertCommand, "@Report", DbType.String, tourLog.Report);
                 database.DefineParameter(insertCommand, "@Difficulty", DbType.String, tourLog.Difficulty);
-                database.DefineParameter(insertCommand, "@TotalTime", DbType.Time, tourLog.TotalTime);
+                database.DefineParameter(insertCommand, "@TotalTime", DbType.String, tourLog.TotalTime);
                 database.DefineParameter(insertCommand, "@Rating", DbType.String, tourLog.Rating);
                 database.DefineParameter(insertCommand, "@TourID", DbType.Int32, tourLog.LogTourItem.TourId);
 
@@ -101,10 +101,10 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
             try
             {
                 DbCommand editCommand = database.CreateCommand(SQL_PUT_Log_BY_ID);
-                database.DefineParameter(editCommand, "@DateTime", DbType.Date, tourLog.DateTime);
+                database.DefineParameter(editCommand, "@DateTime", DbType.String, tourLog.DateTime);
                 database.DefineParameter(editCommand, "@Report", DbType.String, tourLog.Report);
                 database.DefineParameter(editCommand, "@Difficulty", DbType.String, tourLog.Difficulty);
-                database.DefineParameter(editCommand, "@TotalTime", DbType.Time, tourLog.TotalTime);
+                database.DefineParameter(editCommand, "@TotalTime", DbType.String, tourLog.TotalTime);
                 database.DefineParameter(editCommand, "@Rating", DbType.String, tourLog.Rating);
                 database.DefineParameter(editCommand, "@LogId", DbType.Int32, tourLog.LogId);
 
@@ -147,10 +147,10 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
                     {
                         logList.Add(new TourLog(
                            (int)reader["tour_log_id"],
-                           (DateTime)reader["date_time"],
+                           (string)reader["date_time"],
                            (string)reader["report"],
                            (string)reader["difficulty"],
-                           (TimeSpan)reader["total_time"],
+                           (string)reader["total_time"],
                            (string)reader["rating"],
                            tourItem.FindTourItemById((int)reader["tour_item_fk"])
                        ));
