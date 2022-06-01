@@ -178,7 +178,7 @@ namespace TourPlanner.ViewModels
 
         public bool CheckLogDate()
         {
-            Regex regex = new Regex(@"(([0]?[1-9]|1[0-2])\/([0]?[1-9]|1[0-9]|2[0-9]|3[0-1])\/((19|20)\d\d))$");
+            Regex regex = new Regex(@"^(0?[1-9]|1[0-2])\/(0?[1-9]|1[0-9]|2[0-9]|3(0|1))\/\d{4}$");
             ClearErrors(nameof(LogDate));
             
             if (string.IsNullOrEmpty(LogDate))
