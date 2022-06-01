@@ -27,7 +27,7 @@ namespace TourPlanner.ViewModels
 
         // for validation
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-        private readonly Dictionary<string, List<string>> _errorsByPropertyName = new Dictionary<string, List<string>>();
+        public readonly Dictionary<string, List<string>> _errorsByPropertyName = new Dictionary<string, List<string>>();
         public bool HasErrors => _errorsByPropertyName.Any();
 
         private ITourFactory tourFactory;

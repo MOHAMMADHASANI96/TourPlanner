@@ -207,7 +207,7 @@ namespace TourPlanner.ViewModels
 
         public bool CheckLogTotalTime()
         {
-            Regex regex = new Regex(@"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$");
+            Regex regex = new Regex(@"^([0-9]{2,3}):[0-5][0-9]$");
             ClearErrors(nameof(LogTotalTime));
             if (string.IsNullOrEmpty(LogTotalTime))
             {
@@ -217,7 +217,7 @@ namespace TourPlanner.ViewModels
 
             if (!regex.IsMatch(LogTotalTime) && !string.IsNullOrEmpty(LogTotalTime))
             {
-                AddError(nameof(LogTotalTime), "Total Time Format must be HH:MM:SS.");
+                AddError(nameof(LogTotalTime), "Total Time Format must be HH:MM ,and Max Hours until 999");
                 return false;
             }
            

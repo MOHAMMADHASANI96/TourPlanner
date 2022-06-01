@@ -8,7 +8,7 @@ namespace TourPlanner.Test
     [TestFixture]
     public class MapQuestApiProcessTest
     {
-        [Test]
+        [Test, Order(0)]
         public void TestUrlCreate()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
@@ -18,7 +18,7 @@ namespace TourPlanner.Test
             Assert.AreEqual(url, urltest);
         }
 
-        [Test]
+        [Test, Order(1)]
         public void TestUrlCreate1()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
@@ -27,7 +27,7 @@ namespace TourPlanner.Test
 
             Assert.AreNotEqual(url, urltest);
         }
-        [Test]
+        [Test, Order(2)]
         public void TestStaticUrlCreate()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
@@ -39,7 +39,7 @@ namespace TourPlanner.Test
             Assert.AreEqual(url, urltest);
         }
 
-        [Test]
+        [Test, Order(3)]
         public void FileInfoTest()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
@@ -66,7 +66,7 @@ namespace TourPlanner.Test
             Assert.AreEqual(t, tuple);
         }
 
-        [Test]
+        [Test, Order(4)]
         public void FilePathCreateTest()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
@@ -77,7 +77,7 @@ namespace TourPlanner.Test
             Assert.AreEqual(url, testUrl);
         }
 
-        [Test]
+        [Test, Order(5)]
         public void FilePathCreateTest1()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
