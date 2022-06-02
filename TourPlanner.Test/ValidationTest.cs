@@ -33,7 +33,7 @@ namespace TourPlanner.Test
             Assert.AreEqual("Difficulty can not be empty.", logAddViewModel._errorsByPropertyName["LogDifficulty"][0]);
         }
 
-        
+
 
         [Test, Order(3)]
         public void CheckLogTotalTime_EntryLogTotalTimeIsEmpty_ReturnValidationError()
@@ -95,6 +95,45 @@ namespace TourPlanner.Test
             Assert.AreEqual("Distance has to be a float.", addNewTourViewModel._errorsByPropertyName["TourDistance"][0]);
         }
 
+        [Test, Order(10)]
+        public void CheckTourName_EntryTourNameIsEmpty_ReturnValidationError()
+        {
+            addNewTourViewModel.TourName = null;
+            addNewTourViewModel.CheckTourName();
+            Assert.AreEqual("Tour Name cannot be empty.", addNewTourViewModel._errorsByPropertyName["TourName"][0]);
+        }
+
+        [Test, Order(11)]
+        public void CheckTourFrom_EntryTourFromIsEmpty_ReturnValidationError()
+        {
+            addNewTourViewModel.TourFrom = null;
+            addNewTourViewModel.CheckTourFrom();
+            Assert.AreEqual("Origin can not be empty", addNewTourViewModel._errorsByPropertyName["TourFrom"][0]);
+        }
+
+        [Test, Order(12)]
+        public void CheckTourTo_EntryTourToIsEmpty_ReturnValidationError()
+        {
+            addNewTourViewModel.TourTo = null;
+            addNewTourViewModel.CheckTourTo();
+            Assert.AreEqual("Destination can not be empty", addNewTourViewModel._errorsByPropertyName["TourTo"][0]);
+        }
+
+        [Test, Order(13)]
+        public void CheckTourTransportType_EntryTourTransportTypeIsEmpty_ReturnValidationError()
+        {
+            addNewTourViewModel.TourTransportType = null;
+            addNewTourViewModel.CheckTourTransportType();
+            Assert.AreEqual("Transport Type cannot be empty.", addNewTourViewModel._errorsByPropertyName["TourTransportType"][0]);
+        }
+
+        [Test, Order(14)]
+        public void CheckTourDescription_EntryTourTourDescriptionIsEmpty_ReturnValidationError()
+        {
+            addNewTourViewModel.TourDescription = null;
+            addNewTourViewModel.CheckTourDescription();
+            Assert.AreEqual("Description cannot be empty.", addNewTourViewModel._errorsByPropertyName["TourDescription"][0]);
+        }
 
 
     }
