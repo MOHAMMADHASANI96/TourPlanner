@@ -368,12 +368,15 @@ namespace TourPlanner.ViewModels
             if (CurrentLog != null)
             {
                 this.editLogViewModel = new EditLogViewModel();
+
+                // send currentLog information to EditLogViewModel
                 editLogViewModel.CurrentLog = CurrentLog;
                 editLogViewModel.LogDate = CurrentLog.DateTime;
                 editLogViewModel.LogDifficulty = CurrentLog.Difficulty;
                 editLogViewModel.LogTotalTime = CurrentLog.TotalTime;
                 editLogViewModel.LogReport = CurrentLog.Report;
                 editLogViewModel.LogRating = CurrentLog.Rating;
+                
                 EditLogView editLog = new EditLogView();
                 editLog.DataContext = this.editLogViewModel;
                 editLog.ShowDialog();

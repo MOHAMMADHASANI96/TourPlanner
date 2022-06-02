@@ -964,3 +964,14 @@ System.InvalidCastException: Parameter @DateTime must be set
 17:16:59,447 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
 17:17:01,323 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
 17:17:01,452 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+21:14:56,738 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+21:14:59,350 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+21:15:02,843 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+21:15:02,886 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+21:15:30,648 [1] INFO  TourPlanner.ViewModels.AddNewLogViewModel | -Adding new Log DONE!
+21:15:32,062 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+21:18:47,089 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+21:18:48,088 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+21:18:50,840 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+21:18:51,096 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+21:19:00,890 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!

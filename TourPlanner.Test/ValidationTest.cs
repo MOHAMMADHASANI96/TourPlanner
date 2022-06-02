@@ -87,13 +87,14 @@ namespace TourPlanner.Test
             Assert.AreEqual("Distance has to be between 1 and 10000 km.", addNewTourViewModel._errorsByPropertyName["TourDistance"][0]);
         }
 
-        [Test, Order(8)]
+        [Test, Order(9)]
         public void CheckTourDistance_EntryTourDistanceHasIncorrectFormat_ReturnValidationError()
         {
             addNewTourViewModel.TourDistance = "ABC";
             addNewTourViewModel.CheckTourDistance();
             Assert.AreEqual("Distance has to be a float.", addNewTourViewModel._errorsByPropertyName["TourDistance"][0]);
         }
+
 
 
     }
