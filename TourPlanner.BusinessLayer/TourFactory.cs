@@ -19,16 +19,17 @@ namespace TourPlanner.BusinessLayer
             return instance;
         }
 
-        //public static ITourFactory GetInstance(ITourItemDAO tourItemDAO)
-        //{
-        //    instance = new TourFactoryImpl(tourItemDAO);
-        //    return instance;
-        //}
-        //public static ITourFactory GetInstance(ITourLogDAO tourLogDAO)
-        //{
-        //    instance = new TourFactoryImpl(tourLogDAO);
-        //    return instance;
-        //}
+        // for testing
+        public static ITourFactory GetInstance(ITourItemDAO tourItemDAO)
+        {
+            instance = new TourFactoryImpl(tourItemDAO);
+            return instance;
+        }
+        public static ITourFactory GetInstance(ITourLogDAO tourLogDAO)
+        {
+            instance = new TourFactoryImpl(tourLogDAO);
+            return instance;
+        }
 
     }
 }

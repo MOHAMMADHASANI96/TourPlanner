@@ -20,6 +20,8 @@ namespace TourPlanner.ViewModels
         private string tourDistance;
         private string tourTransportType;
 
+        
+
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private TourItem currentTour;
@@ -33,6 +35,7 @@ namespace TourPlanner.ViewModels
         //command
         private ICommand editTour;
         private ICommand cancle;
+        private Window window;
 
         public ICommand EditTour => editTour ??= new RelayCommand(PerformEditTour);
         public ICommand Cancle => cancle ??= new RelayCommand(PerformCancle);
@@ -62,27 +65,34 @@ namespace TourPlanner.ViewModels
 
         private void PerformEditTour(object commandParameter)
         {            
-            if (!string.IsNullOrEmpty(CurrentTour.Name) && !string.IsNullOrEmpty(CurrentTour.From) && !string.IsNullOrEmpty(CurrentTour.To) && !string.IsNullOrEmpty(CurrentTour.Description) && !string.IsNullOrEmpty(CurrentTour.TransportTyp) && !string.IsNullOrEmpty(CurrentTour.Distance))
+            if (!string.IsNullOrEmpty(CurrentTour.Name) && !string.IsNullOrEmpty(TourFrom) && !string.IsNullOrEmpty(TourTo) && !string.IsNullOrEmpty(TourDescription) && !string.IsNullOrEmpty(TourTransportType) && !string.IsNullOrEmpty(TourDistance))
             {
                 int id = CurrentTour.TourId;
-                TourItem editTour = new TourItem(id, CurrentTour.Name, CurrentTour.Description, CurrentTour.From, CurrentTour.To, CurrentTour.Name, CurrentTour.Distance , CurrentTour.TransportTyp);
+                TourItem editTour = new TourItem(id, CurrentTour.Name, TourDescription, TourFrom, TourTo, CurrentTour.Name, TourDistance, TourTransportType);
 
                 //save to DB
-                this.tourFactory.EditTourItem(editTour);
+                if(this.tourFactory.EditTourItem(editTour) != null)
+                {
+                    // save to lof file
+                    log.Info("Editing Tour DONE!");
+                    //Save image to Folder
+                    this.tourFactory.SaveRouteImageFromApi(CurrentTour.From, CurrentTour.To, CurrentTour.Name);
 
-                // save to lof file
-                log.Info("Editing Tour DONE!");
+                    //Show Successfully Message 
+                    MessageBox.Show("Edit Tour Successfully.");
 
-                //Save image to Folder
-                this.tourFactory.SaveRouteImageFromApi(CurrentTour.From, CurrentTour.To, CurrentTour.Name);
+                    //Close Window
+                    window = Application.Current.Windows[2];
+                    window.Close();
+                }
+                else
+                {
+                    // save to lof file
+                    log.Info("Editing Tour FAILD!");
 
-                //Show Successfully Message 
-                MessageBox.Show("Edit Tour Successfully added.");
-
-                //Close Window
-                var window = Application.Current.Windows[2];
-                window.Close();
-
+                    //Show Successfully Message 
+                    MessageBox.Show("Edit Tour not Successfully.");
+                }
             }
             else
             {

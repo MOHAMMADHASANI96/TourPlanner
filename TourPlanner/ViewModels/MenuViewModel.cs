@@ -136,21 +136,37 @@ namespace TourPlanner.ViewModels
         //Create Export File
         private void PerformCreateExport(object commandParameter)
         {
-            ExportGenerator export = new ExportGenerator();
-            if(this.tourFactory.ExportGenerate(export.Export()))
+
+            // SaveFileDialog settings
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "Save an Export File";
+            saveFileDialog.InitialDirectory = @"D:\informatik\SS2022\SWE2\TourPlanner\RouteExport";
+            string fileName = System.DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
+            saveFileDialog.FileName = fileName;
+            saveFileDialog.DefaultExt = "json";
+            saveFileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+            saveFileDialog.FilterIndex = 2;
+            saveFileDialog.RestoreDirectory = true;
+
+
+            if (saveFileDialog.ShowDialog() == true)
             {
-                MessageBox.Show("Export File created");
-                //save to log file
-                log.Info("Creating Export File DONE!");
-            }
-                
-            else
-            {
-                MessageBox.Show("Export File doese not created");
-                //save to log file
-                log.Info("FAILED Creating Export File!");
-            }
-               
+
+                ExportGenerator export = new ExportGenerator();
+                if (this.tourFactory.ExportGenerate(export.Export(), saveFileDialog.FileName))
+                {
+                    MessageBox.Show("Export File created");
+                    //save to log file
+                    log.Info("Creating Export File DONE!");
+                }
+
+                else
+                {
+                    MessageBox.Show("Export File doese not created");
+                    //save to log file
+                    log.Info("FAILED Creating Export File!");
+                }
+            }  
         }
 
 

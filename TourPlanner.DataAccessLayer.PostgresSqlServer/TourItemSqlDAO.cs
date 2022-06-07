@@ -37,6 +37,7 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
         // add new TourItem
         public TourItem AddNewTourItem(TourItem tourItem)
         {
+
             try
             {
                 DbCommand insertCommand = database.CreateCommand(SQL_INSERT_NEW_TOUR);
@@ -140,6 +141,8 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
         // edit TourItem
         public TourItem EditTourItem(TourItem tourItem)
         {
+
+
             try
             {
                 DbCommand editCommand = database.CreateCommand(SQL_PUT_TOUR_BY_ID);

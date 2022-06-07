@@ -9,7 +9,7 @@ namespace TourPlanner.Test
     public class MapQuestApiProcessTest
     {
         [Test, Order(0)]
-        public void TestUrlCreate()
+        public void DirectionUrlCreate_EntriesFromAndToGiven_ReturnEqualURL()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
             string url = "http://www.mapquestapi.com/directions/v2/route?key=&from=wien&to=linz";
@@ -19,7 +19,7 @@ namespace TourPlanner.Test
         }
 
         [Test, Order(1)]
-        public void TestUrlCreate1()
+        public void DirectionUrlCreate_EntriesFromAndToGiven_ReturntNotEqualURL()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
             string url = "http://www.mapquestapi.com/directions/v2/route?key=&from=wien&to=linz";
@@ -28,7 +28,7 @@ namespace TourPlanner.Test
             Assert.AreNotEqual(url, urltest);
         }
         [Test, Order(2)]
-        public void TestStaticUrlCreate()
+        public void StaticUrlCreate_EntriesSessionAndBoundingBoxGiven_ReturnEqualURL()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
             string box = "48.9876";
@@ -40,7 +40,7 @@ namespace TourPlanner.Test
         }
 
         [Test, Order(3)]
-        public void FileInfoTest()
+        public void RootInfo_EntryRootObject_ReturnEqualTuple()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
             Root root = new Root();
@@ -67,7 +67,7 @@ namespace TourPlanner.Test
         }
 
         [Test, Order(4)]
-        public void FilePathCreateTest()
+        public void FilePathCreate_EntryNameOfTour_ShouldEqualURL()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
             string url = "\\tourName.png";
@@ -78,7 +78,7 @@ namespace TourPlanner.Test
         }
 
         [Test, Order(5)]
-        public void FilePathCreateTest1()
+        public void FilePathCreate_EntryNameOfTour_ShouldNotEqualURL()
         {
             MapQuestApiProcessor mapQuest = new MapQuestApiProcessor();
             string url = "\\tour.png";

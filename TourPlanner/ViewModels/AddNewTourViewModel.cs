@@ -22,6 +22,7 @@ namespace TourPlanner.ViewModels
         private string tourTo;
         private string tourDistance;
         private string tourTransportType;
+        private Window window;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -53,29 +54,36 @@ namespace TourPlanner.ViewModels
 
         private void AddNewTour(object commandParameter)
         {
-            if (!string.IsNullOrEmpty(TourName) && !string.IsNullOrEmpty(TourFrom) && !string.IsNullOrEmpty(TourTo) && !string.IsNullOrEmpty(TourDescription) && !string.IsNullOrEmpty(TourTransportType))
+            if (!string.IsNullOrEmpty(TourName)&& CheckTourName() && !string.IsNullOrEmpty(TourFrom) && !string.IsNullOrEmpty(TourTo) && !string.IsNullOrEmpty(TourDescription) && !string.IsNullOrEmpty(TourTransportType))
             {
                 TourItem newTour = new TourItem(0, tourName, tourDescription, tourFrom, tourTo, tourName, tourDistance, tourTransportType);
 
                 //save to DB
-                this.tourFactory.CreateTourItem(newTour);
+                if(this.tourFactory.CreateTourItem(newTour) != null)
+                {
+                    //save image to Folder
+                    this.tourFactory.SaveRouteImageFromApi(TourFrom, TourTo, TourName);
 
-                //save image to Folder
-                this.tourFactory.SaveRouteImageFromApi(TourFrom, TourTo, TourName);
+                    //show successfully message
+                    MessageBox.Show("New Tour Successfully added.");
 
-                //show successfully message
-                MessageBox.Show("New Tour Successfully added.");
+                    //save to log file
+                    log.Info("Adding new Tour DONE!");
 
-                //save to log file
-                log.Info("Adding new Tour DONE!");
+                    //Close Window
+                    window = Application.Current.Windows[2];
+                    window.Close();
+                }
+                else
+                {
+                    //show Faild message
+                    MessageBox.Show("New Tour Successfully Does not added.");
 
-                //empty all field
-                TourName = string.Empty;
-                TourFrom = string.Empty;
-                TourTo = string.Empty;
-                TourDescription = string.Empty;
-                TourTransportType = string.Empty;
-                TourDistance = string.Empty;
+                    //save to log file
+                    log.Info("Adding new Tour FAILD!");
+                }
+
+                
             }
             else
             {

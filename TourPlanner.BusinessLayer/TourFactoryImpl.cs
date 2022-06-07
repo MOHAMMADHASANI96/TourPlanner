@@ -22,8 +22,8 @@ namespace TourPlanner.BusinessLayer
         public string RoutPhotoFolder { get; set; }
         public string RoutPDFFolder { get; set; }
         public string RoutExportFolder { get; set; }
-        //public ITourItemDAO tourDAO { get; set; }
-        //public ITourLogDAO logDAO { get; set; }
+        public ITourItemDAO tourItemDAO { get; set; }
+        public ITourLogDAO tourLogDAO { get; set; }
 
 
         public TourFactoryImpl()
@@ -31,32 +31,34 @@ namespace TourPlanner.BusinessLayer
             RoutPhotoFolder = ConfigurationManager.AppSettings["RoutPhotoFolder"];
             RoutPDFFolder = ConfigurationManager.AppSettings["RoutPDFFolder"];
             RoutExportFolder = ConfigurationManager.AppSettings["RoutExportFolder"];
+            tourItemDAO = DALFactory.CreateTourItemDAO();
+            tourLogDAO = DALFactory.CreateTourLogDAO();
         }
 
-        ////for testing
-        //public TourFactoryImpl(ITourItemDAO tourItemDAO)
-        //{
-        //    RoutPhotoFolder = ConfigurationManager.AppSettings["RoutPhotoFolder"];
-        //    RoutPDFFolder = ConfigurationManager.AppSettings["RoutPDFFolder"];
-        //    RoutExportFolder = ConfigurationManager.AppSettings["RoutExportFolder"];
-        //    this.tourDAO = tourItemDAO;
-        //}
-        ////for testing
-        //public TourFactoryImpl(ITourLogDAO tourLogDAO)
-        //{
-        //    RoutPhotoFolder = ConfigurationManager.AppSettings["RoutPhotoFolder"];
-        //    RoutPDFFolder = ConfigurationManager.AppSettings["RoutPDFFolder"];
-        //    RoutExportFolder = ConfigurationManager.AppSettings["RoutExportFolder"];
-        //    this.logDAO = tourLogDAO;
-        //}
+        //for testing
+        public TourFactoryImpl(ITourItemDAO tourItemDAO)
+        {
+            RoutPhotoFolder = ConfigurationManager.AppSettings["RoutPhotoFolder"];
+            RoutPDFFolder = ConfigurationManager.AppSettings["RoutPDFFolder"];
+            RoutExportFolder = ConfigurationManager.AppSettings["RoutExportFolder"];
+            this.tourItemDAO = tourItemDAO;
+        }
+        //for testing
+        public TourFactoryImpl(ITourLogDAO tourLogDAO)
+        {
+            RoutPhotoFolder = ConfigurationManager.AppSettings["RoutPhotoFolder"];
+            RoutPDFFolder = ConfigurationManager.AppSettings["RoutPDFFolder"];
+            RoutExportFolder = ConfigurationManager.AppSettings["RoutExportFolder"];
+            this.tourLogDAO = tourLogDAO;
+        }
 
 
         //Get Tour Item 
         public IEnumerable<TourItem> GetItems()
         {
-            ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
             return tourItemDAO.GetTourItems();
         }
+
 
         //serach 
         public IEnumerable<TourItem> Search(string itemName, bool caseSensitive = false)
@@ -72,35 +74,30 @@ namespace TourPlanner.BusinessLayer
         //Create Tour Item
         public TourItem CreateTourItem(TourItem tourItem)
         {
-            ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
             return tourItemDAO.AddNewTourItem(tourItem);
         }
 
         //Create Tour Log
         public TourLog CreateTourLog(TourLog tourLog)
         {
-            ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
             return tourLogDAO.AddNewTourLog(tourLog);
         }
 
         //Get Tour Log
         public IEnumerable<TourLog> GetTourLog(TourItem tourItem)
         {
-            ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
             return tourLogDAO.GetLogItems(tourItem);
         }
 
         //get Last Id
         public int GetLastTourId()
         {
-            ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
             return tourItemDAO.GetLastTourId();
         }
 
         //get Tour by Name
         public TourItem FindTourItemByName(string name)
         {
-            ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
             return tourItemDAO.FindTourItemByName(name);
         }
 
@@ -125,28 +122,24 @@ namespace TourPlanner.BusinessLayer
         //Edit Tour Item
         public TourItem EditTourItem(TourItem tourItem)
         {
-            ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
             return tourItemDAO.EditTourItem(tourItem);
         }
 
         //Edit Tour Log
         public TourLog EditTourLog(TourLog tourLog)
         {
-           ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
            return tourLogDAO.EditTourLog(tourLog);
         }
 
         //Delete Tour Item
         public void DeleteTourItem(TourItem tourItem)
         {
-            ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
             tourItemDAO.DeleteTourItem(tourItem);
         }
 
         //Delete All Tour Item
         public void DeleteAllTourItems()
         {
-            ITourItemDAO tourItemDAO = DALFactory.CreateTourItemDAO();
             tourItemDAO.DeleteAllTourItems();
         }
 
@@ -159,7 +152,6 @@ namespace TourPlanner.BusinessLayer
         //Delete Tour Log
         public void DeleteTourLog(TourLog tourLog)
         {
-            ITourLogDAO tourLogDAO = DALFactory.CreateTourLogDAO();
             tourLogDAO.DeleteTourLog(tourLog);
         }
 
@@ -183,20 +175,12 @@ namespace TourPlanner.BusinessLayer
             }  
         }
 
-        // create path for export file
-        public string GetExportPath()
-        {
-            string fileName = System.DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
-            string exportPath = RoutExportFolder + "\\" + fileName + ".json";
-            return exportPath;
-        }
-
         // create Export File
-        public bool ExportGenerate(List<Export> exportObjects)
+        public bool ExportGenerate(List<Export> exportObjects,string path)
         {
             try
             {
-                string exportPath = GetExportPath();
+                string exportPath = path;
 
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.NullValueHandling = NullValueHandling.Ignore;
