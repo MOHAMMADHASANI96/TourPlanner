@@ -63,9 +63,10 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
         {
             try
             {
-                DbCommand command = database.CreateCommand(SQL_FIND_BY_ID);
-                database.DefineParameter(command, "@Id", DbType.Int32, itemLogId);
-                IEnumerable<TourLog> logList = QueryLogFromDb(command);
+                DbCommand findcommand = database.CreateCommand(SQL_FIND_BY_ID);
+                database.DefineParameter(findcommand, "@Id", DbType.Int32, itemLogId);
+                IEnumerable<TourLog> logList = QueryLogFromDb(findcommand);
+                log.Info($"The log with the ID {itemLogId} is found!");
                 return logList.FirstOrDefault();
             }
             catch (Exception ex)
@@ -77,7 +78,7 @@ namespace TourPlanner.DataAccessLayer.PostgresSqlServer
            
         }
 
-        // get Log ?????
+        // get Log 
         public IEnumerable<TourLog> GetLogItems(TourItem tourItem)
         {
             try

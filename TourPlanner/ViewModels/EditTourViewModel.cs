@@ -71,28 +71,20 @@ namespace TourPlanner.ViewModels
                 TourItem editTour = new TourItem(id, CurrentTour.Name, TourDescription, TourFrom, TourTo, CurrentTour.Name, TourDistance, TourTransportType);
 
                 //save to DB
-                if(this.tourFactory.EditTourItem(editTour) != null)
-                {
-                    // save to lof file
-                    log.Info("Editing Tour DONE!");
-                    //Save image to Folder
-                    this.tourFactory.SaveRouteImageFromApi(CurrentTour.From, CurrentTour.To, CurrentTour.Name);
+                this.tourFactory.EditTourItem(editTour);
+                
+                // save to lof file
+                log.Info("Editing Tour DONE!");
+                //Save image to Folder
+                this.tourFactory.SaveRouteImageFromApi(CurrentTour.From, CurrentTour.To, CurrentTour.Name);
 
-                    //Show Successfully Message 
-                    MessageBox.Show("Edit Tour Successfully.");
+                //Show Successfully Message 
+                MessageBox.Show("Edit Tour Successfully.");
 
-                    //Close Window
-                    window = Application.Current.Windows[2];
-                    window.Close();
-                }
-                else
-                {
-                    // save to lof file
-                    log.Info("Editing Tour FAILD!");
-
-                    //Show Successfully Message 
-                    MessageBox.Show("Edit Tour not Successfully.");
-                }
+                //Close Window
+                window = Application.Current.Windows[2];
+                window.Close();
+               
             }
             else
             {

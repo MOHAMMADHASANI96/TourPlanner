@@ -136,27 +136,17 @@ namespace TourPlanner.ViewModels
                 TourLog newLog = new TourLog(0, logDate, logReport,logDifficulty,logTotalTime,logRating,currentTour);
 
                 //save to DB
-                if(this.tourFactory.CreateTourLog(newLog) != null)
-                {
-                    // save to log file
-                    log.Info("Adding new Log DONE!");
-
-                    //Show Successfully Message 
-                    MessageBox.Show("New TourLog Successfully added.");
-
-                    //Close Window
-                    window = Application.Current.Windows[2];
-                    window.Close();
-                }
-                else
-                {
-                    // save to log file
-                    log.Info("Adding new Log FAILD!");
-
-                    //Show Faild Message 
-                    MessageBox.Show("New TourLog Does not Successfully added.");
-                }
+                this.tourFactory.CreateTourLog(newLog);
                 
+                // save to log file
+                log.Info("Adding new Log DONE!");
+
+                //Show Successfully Message 
+                MessageBox.Show("New TourLog Successfully added.");
+
+                //Close Window
+                window = Application.Current.Windows[2];
+                window.Close();
             }
             else
             {

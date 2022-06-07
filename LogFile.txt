@@ -1139,3 +1139,100 @@ System.InvalidCastException: Parameter @DateTime must be set
 21:18:44,413 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
 21:18:45,148 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
 21:18:45,152 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+22:52:59,433 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+22:53:00,313 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+22:53:02,897 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+22:53:02,935 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+22:53:38,197 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -Adding new Tour DONE!
+22:53:38,264 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+22:53:41,355 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+22:53:41,357 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+22:53:51,149 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+22:53:51,171 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+22:53:51,688 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+22:53:51,694 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+22:54:13,793 [1] INFO  TourPlanner.ViewModels.AddNewLogViewModel | -Adding new Log FAILD!
+22:54:16,526 [1] INFO  TourPlanner.ViewModels.AddNewLogViewModel | -Adding new Log FAILD!
+22:54:27,174 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+22:56:15,359 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+22:56:16,277 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+22:56:18,366 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+22:56:18,401 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+22:56:22,418 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+22:56:29,331 [1] INFO  TourPlanner.ViewModels.EditLogViewModel | -Editing Tour FAILD!
+22:56:32,185 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+22:56:50,800 [1] INFO  TourPlanner.ViewModels.EditTourViewModel | -Editing Tour FAILD!
+22:56:53,721 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+22:56:54,482 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+22:56:54,619 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+22:58:43,659 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+22:58:44,596 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+22:58:46,714 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+22:58:46,759 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:07:40,207 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+23:07:41,076 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+23:07:43,924 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:07:43,960 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:13:35,885 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+23:13:36,620 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+23:13:38,319 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:13:38,381 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:13:46,640 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:13:53,990 [1] INFO  TourPlanner.DataAccessLayer.PostgresSqlServer.TourLogSqlDAO | -The log with the ID 0 is found!
+23:13:53,990 [1] INFO  TourPlanner.ViewModels.EditLogViewModel | -Editing Tour FAILD!
+23:14:30,291 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+23:14:31,092 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+23:14:32,923 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:14:32,964 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:20:17,654 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+23:20:19,055 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+23:20:20,631 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:20:20,688 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:20:42,793 [1] INFO  TourPlanner.ViewModels.TourViewModel | ------------START LOG------------
+23:20:44,639 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+23:20:46,208 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:20:46,248 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:20:50,964 [1] INFO  TourPlanner.DataAccessLayer.PostgresSqlServer.TourLogSqlDAO | -The log with the ID 0 is found!
+23:20:50,964 [1] INFO  TourPlanner.ViewModels.EditLogViewModel | -Editing Tour DONE!
+23:20:52,078 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:20:53,502 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:20:53,508 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:21:00,336 [1] INFO  TourPlanner.ViewModels.EditTourViewModel | -Editing Tour DONE!
+23:21:01,596 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+23:21:03,931 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:21:03,957 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:21:06,396 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:21:06,405 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:21:22,532 [1] INFO  TourPlanner.DataAccessLayer.PostgresSqlServer.TourLogSqlDAO | -The log with the ID 0 is found!
+23:21:22,532 [1] INFO  TourPlanner.ViewModels.AddNewLogViewModel | -Adding new Log DONE!
+23:21:23,432 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:21:53,271 [1] INFO  TourPlanner.ViewModels.AddNewTourViewModel | -Adding new Tour DONE!
+23:21:53,334 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+23:21:54,312 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:21:54,315 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:22:05,202 [1] INFO  TourPlanner.ViewModels.MenuViewModel | -Creating PDF File DONE!
+23:22:11,224 [1] INFO  TourPlanner.ViewModels.MenuViewModel | -Creating Export File DONE!
+23:22:12,407 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:22:12,408 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:22:18,860 [1] INFO  TourPlanner.DataAccessLayer.PostgresSqlServer.TourLogSqlDAO | -The log with the ID 0 is found!
+23:22:18,949 [1] INFO  TourPlanner.DataAccessLayer.PostgresSqlServer.TourLogSqlDAO | -The log with the ID 0 is found!
+23:22:19,030 [1] INFO  TourPlanner.DataAccessLayer.PostgresSqlServer.TourLogSqlDAO | -The log with the ID 0 is found!
+23:22:19,031 [1] INFO  TourPlanner.ViewModels.MenuViewModel | -Importing File DONE!
+23:22:20,100 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Tour ListBox DONE!
+23:22:20,100 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Updating MainScreen after Import File Done!
+23:22:21,274 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:22:21,305 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:22:21,959 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:22:21,961 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:22:22,504 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:22:22,505 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:22:23,940 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:22:23,941 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:22:24,443 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:22:24,444 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:22:28,004 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:22:28,007 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:22:35,706 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:22:35,707 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!
+23:22:37,277 [1] INFO  TourPlanner.ViewModels.MainViewModel | -Active PDF MenuItem!
+23:22:37,280 [1] INFO  TourPlanner.ViewModels.TourViewModel | -Filling Log ListBox DONE!

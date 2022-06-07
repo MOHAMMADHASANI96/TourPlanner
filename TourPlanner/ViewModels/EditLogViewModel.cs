@@ -152,27 +152,18 @@ namespace TourPlanner.ViewModels
                 TourLog editLog = new TourLog(CurrentLog.LogId,LogDate, LogReport, LogDifficulty, LogTotalTime, LogRating, currentTour);
 
                 //save to DB
-                if(this.tourFactory.EditTourLog(editLog) != null)
-                {
-                    //save to log file
-                    log.Info("Editing Tour DONE!");
+                this.tourFactory.EditTourLog(editLog);
+                
+                //save to log file
+                log.Info("Editing Tour DONE!");
 
-                    //Show Successfully Message 
-                    MessageBox.Show("Edit Log Successfully");
+                //Show Successfully Message 
+                MessageBox.Show("Edit Log Successfully");
 
-                    //Close Window
-                    window = Application.Current.Windows[2];
-                    window.Close();
-                }
+                //Close Window
+                window = Application.Current.Windows[2];
+                window.Close();
 
-                else
-                {
-                    //save to log file
-                    log.Info("Editing Tour FAILD!");
-
-                    //Show Successfully Message 
-                    MessageBox.Show("Edit Log Does not Successfully");
-                }
             }
         }
 
