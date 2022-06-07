@@ -83,7 +83,6 @@ namespace TourPlanner.ViewModels
                     log.Info("Adding new Tour FAILD!");
                 }
 
-                
             }
             else
             {

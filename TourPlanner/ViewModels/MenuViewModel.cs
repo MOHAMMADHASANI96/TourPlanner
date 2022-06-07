@@ -104,6 +104,8 @@ namespace TourPlanner.ViewModels
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Title = "Save an PDF File";
                 saveFileDialog.InitialDirectory = @"D:\informatik\SS2022\SWE2\TourPlanner\RoutePDF";
+                string fileName = CurrentTour.Name;
+                saveFileDialog.FileName = fileName;
                 saveFileDialog.DefaultExt = "pdf";
                 saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
                 saveFileDialog.FilterIndex = 2;

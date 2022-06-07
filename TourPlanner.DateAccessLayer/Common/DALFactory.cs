@@ -15,11 +15,6 @@ namespace TourPlanner.DataAccessLayer.Common
         static DALFactory()
         {
             assemblyName = ConfigurationManager.AppSettings["DALSqlAssembly"];
-            //for testing
-            if(assemblyName == null)
-            {
-                assemblyName = "TourPlanner.DataAccessLayer.PostgresSqlServer";
-            }
             dalAssembly = Assembly.Load(assemblyName);
         }
 
@@ -36,9 +31,7 @@ namespace TourPlanner.DataAccessLayer.Common
         }
         private static IDatabase CreateDatabase()
         {
-            //string connctionString = ConfigurationManager.ConnectionStrings["PostgresSQLConnectionString"].ConnectionString
-            //for testing
-            string connectionString = "Server=localhost;Port=5432;User Id=postgres;Password=test;Database=tp;";
+            string connectionString = ConfigurationManager.ConnectionStrings["PostgresSQLConnectionString"].ConnectionString;
             return CreateDatabase(connectionString);
         }
 
